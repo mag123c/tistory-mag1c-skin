@@ -7,7 +7,7 @@
     <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]">
     <link rel="stylesheet" type="text/css" href="./style.css">
     
-    <!-- Google Analytics -->
+    <!-- 구글 애널리틱스 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-96MML77SCQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -16,19 +16,19 @@
       gtag('config', 'G-96MML77SCQ');
     </script>
     
-    <!-- Google AdSense -->
+    <!-- 구글 애드센스 -->
     <meta name="google-adsense-platform-account" content="ca-host-pub-9691043933427338">
     <meta name="google-adsense-platform-domain" content="tistory.com">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     
-    <!-- Tistory functions without T button -->
+    <!-- 티스토리 기본 기능 (T버튼 없이) -->
     <script type="text/javascript">
         window.hideMenubar = true;
     </script>
     <s_t3>
 </head>
 <body id="[##_body_id_##]">
-    <!-- Header -->
+    <!-- 헤더 -->
     <header class="site-header">
         <div class="header-container">
             <h1 class="site-title">
@@ -52,7 +52,7 @@
         </div>
     </header>
 
-    <!-- Search Modal -->
+    <!-- 검색 모달 -->
     <div class="search-modal">
         <div class="search-modal-content">
             <button class="search-close">&times;</button>
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <!-- Sidebar -->
+    <!-- 사이드바 -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <h2 class="sidebar-title">[##_title_##]</h2>
@@ -73,7 +73,7 @@
         </div>
         <div class="sidebar-content">
             <nav class="sidebar-nav">
-                <!-- Categories -->
+                <!-- 카테고리 -->
                 <s_sidebar_element>
                     <div class="sidebar-section">
                         <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: var(--text-primary);">카테고리</h3>
@@ -84,7 +84,7 @@
                 </s_sidebar_element>
                 
                 
-                <!-- Links -->
+                <!-- SNS 링크 -->
                 <div class="sidebar-section" style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 30px; margin-top: 30px;">
                     <ul class="sidebar-links">
                         <s_if_var_footer-sns-email>
@@ -150,7 +150,7 @@
                     </ul>
                 </div>
                 
-                <!-- Admin Controls -->
+                <!-- 관리자 컨트롤 -->
                 <div class="sidebar-section admin-controls">
                     <div class="admin-buttons">
                         <a href="[##_blog_link_##]manage/post" class="admin-btn">글쓰기</a>
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 
-                <!-- Sidebar Footer -->
+                <!-- 사이드바 푸터 -->
                 <div class="sidebar-footer">
                     <p class="sidebar-credit">Designed by <a href="https://mag1c.tistory.com" target="_blank">mag1c</a></p>
                 </div>
@@ -167,19 +167,19 @@
         </div>
     </aside>
     
-    <!-- Overlay for mobile sidebar -->
+    <!-- 모바일 사이드바 오버레이 -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Main Content -->
+    <!-- 메인 컨텐츠 -->
     <main class="main-content">
-        <!-- Hero Carousel for Home Page (shown via JS on index) -->
+        <!-- 홈페이지 히어로 캐러셀 (JS로 표시) -->
         <section class="hero-carousel" id="mainCarousel" style="display: none;">
             <div class="carousel-container">
                 <div class="carousel-track">
-                    <!-- Carousel slides will be populated by JavaScript -->
+                    <!-- 캐러셀 슬라이드는 JavaScript로 생성 -->
                 </div>
                 
-                <!-- Carousel Controls -->
+                <!-- 캐러셀 컨트롤 -->
                 <button class="carousel-prev" aria-label="이전">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="15 18 9 12 15 6"></polyline>
@@ -191,14 +191,14 @@
                     </svg>
                 </button>
                 
-                <!-- Carousel Indicators -->
+                <!-- 캐러셀 인디케이터 -->
                 <div class="carousel-indicators"></div>
                 
-                <!-- Subscribe Button Removed -->
+                <!-- 구독 버튼 제거됨 -->
             </div>
         </section>
 
-        <!-- Post List Section -->
+        <!-- 게시글 리스트 섹션 -->
         <s_list>
             <section class="post-list-section">
                 <div class="section-header">
@@ -267,7 +267,7 @@
                     </s_list_rep>
                 </div>
                 
-                <!-- Pagination -->
+                <!-- 페이지네이션 -->
                 <s_paging>
                     <div class="pagination">
                         <s_paging_prev>
@@ -282,9 +282,9 @@
             </section>
         </s_list>
 
-        <!-- Single Post -->
+        <!-- 게시글 상세 -->
         <s_article_rep>
-            <!-- Post Hero Section -->
+            <!-- 게시글 히어로 섹션 -->
             <section class="post-hero">
                 <s_article_rep_thumbnail>
                     <div class="post-hero-bg" style="background-image: url('[##_article_rep_thumbnail_url_##]')"></div>
@@ -294,7 +294,7 @@
                 </s_not_article_rep_thumbnail>
                 <div class="post-hero-overlay"></div>
                 
-                <!-- Header in Hero -->
+                <!-- 히어로 내 헤더 -->
                 <header class="site-header hero-header">
                     <div class="header-container">
                         <h1 class="site-title">
@@ -328,7 +328,7 @@
                         <span class="post-hero-date">[##_article_rep_date_##]</span>
                     </div>
                     
-                    <!-- Admin Controls for Article Owner -->
+                    <!-- 게시글 소유자 관리 버튼 -->
                     <s_ad_div>
                         <div class="post-hero-admin">
                             <a href="[##_s_ad_m_link_##]" class="hero-admin-btn">
@@ -361,14 +361,14 @@
                     [##_article_rep_desc_##]
                 </div>
                 
-                <!-- Post Tags -->
+                <!-- 게시글 태그 -->
                 <s_tag_label>
                     <div class="post-tags">
                         [##_tag_label_rep_##]
                     </div>
                 </s_tag_label>
                 
-                <!-- Post Actions -->
+                <!-- 게시글 액션 버튼 -->
                 <div class="post-actions">
                     <button class="action-btn like-btn" onclick="[##_article_rep_rp_link_##]">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -394,7 +394,7 @@
                     </button>
                 </div>
                 
-                <!-- Author Profile -->
+                <!-- 작성자 프로필 -->
                 <div class="author-profile">
                     <div class="author-avatar">
                         <img src="[##_image_##]" alt="[##_blogger_##]" onerror="this.src='https://t1.daumcdn.net/tistory_admin/static/manage/images/r3/default_L.png'">
@@ -455,7 +455,7 @@
                     </div>
                 </div>
                 
-                <!-- Comments -->
+                <!-- 댓글 -->
                 <s_rp>
                     <section class="comments-section">
                         <h3>댓글</h3>
@@ -504,12 +504,12 @@
             </article>
         </s_article_rep>
         
-        <!-- Guestbook Page -->
+        <!-- 방명록 페이지 -->
         <s_guest>
             <section class="guestbook-section">
                 <h2 class="guestbook-title">방명록</h2>
                 
-                <!-- Guestbook Write Form -->
+                <!-- 방명록 작성 폼 -->
                 <s_guest_input_form>
                     <div class="guestbook-form">
                         <s_guest_member>
@@ -535,7 +535,7 @@
                     </div>
                 </s_guest_input_form>
                 
-                <!-- Guestbook List -->
+                <!-- 방명록 리스트 -->
                 <s_guest_container>
                     <div class="guestbook-list">
                         <s_guest_rep>
@@ -571,7 +571,7 @@
             </section>
         </s_guest>
 
-        <!-- AdSense Ads -->
+        <!-- 애드센스 광고 -->
         <div class="ad-container">
             <ins class="adsbygoogle"
                  style="display:block"
@@ -585,7 +585,7 @@
         </div>
     </main>
 
-    <!-- Floating Buttons -->
+    <!-- 플로팅 버튼 -->
     <div class="floating-buttons">
         <button class="subscribe-floating" aria-label="구독">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -601,7 +601,7 @@
         </a>
     </div>
 
-    <!-- Footer -->
+    <!-- 푸터 -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-links">

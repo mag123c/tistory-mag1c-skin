@@ -621,25 +621,31 @@ body.tt-body-search .search-info {
   gap: 30px;
 }
 
-/* 리스트 뷰 */
+/* 리스트 뷰 - 좌측 썸네일, 우측 내용 레이아웃 */
 .post-grid.list-view {
   grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .post-grid.list-view .post-card {
-  display: flex;
-  flex-direction: row;
+  display: block;
   height: auto;
   min-height: 200px;
 }
 
+.post-grid.list-view .post-card-link {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
+
 .post-grid.list-view .post-card-thumbnail {
   width: 300px;
+  min-width: 300px;
   height: 200px;
   border-radius: 12px 0 0 12px;
   flex-shrink: 0;
-  order: 1;
 }
 
 .post-grid.list-view .post-card-content {
@@ -648,7 +654,6 @@ body.tt-body-search .search-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  order: 2;
 }
 
 .post-grid.list-view .post-card-title {
@@ -1291,29 +1296,24 @@ body {
 
 .admin-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+  justify-content: center;
 }
 
 .admin-btn {
-  display: inline;
-  padding: 0;
-  background: none;
   color: var(--text-primary);
-  text-decoration: underline;
-  text-align: left;
-  border: none;
-  border-radius: 0;
-  font-size: 0.95rem;
-  font-weight: normal;
-  transition: color 0.3s ease;
-  margin-bottom: 8px;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .admin-btn:hover {
   color: var(--accent-color);
-  background: none;
-  transform: none;
+  border-bottom-color: var(--accent-color);
 }
 
 /* 반응형 디자인 */
