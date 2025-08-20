@@ -311,33 +311,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // View Toggle Functionality - 검색 페이지에서도 동작하도록 개선
-  const viewToggles = document.querySelectorAll(".view-toggle");
-  const postGrids = document.querySelectorAll(".post-grid"); // 모든 post-grid 선택
-
-  if (viewToggles.length > 0 && postGrids.length > 0) {
-    viewToggles.forEach((toggle) => {
-      toggle.addEventListener("click", (e) => {
-        e.preventDefault(); // 기본 동작 방지
-        const view = toggle.dataset.view;
-
-        // Update active toggle
-        viewToggles.forEach((t) => t.classList.remove("active"));
-        toggle.classList.add("active");
-
-        // Update all grid classes (검색 결과 포함)
-        postGrids.forEach((grid) => {
-          if (view === "list") {
-            grid.classList.add("list-view");
-            grid.classList.remove("grid-view");
-          } else {
-            grid.classList.remove("list-view");
-            grid.classList.add("grid-view");
-          }
-        });
+  // View Toggle Functionality - 이벤트 위임으로 검색 페이지에서도 동작
+  function setupViewToggle() {
+    const postGrids = document.querySelectorAll(".post-grid");
+    
+    // 페이지 로드 시 기본값을 그리드로 설정
+    if (postGrids.length > 0) {
+      postGrids.forEach((grid) => {
+        grid.classList.add("grid-view");
+        grid.classList.remove("list-view");
       });
-    });
+    }
   }
+
+  // 초기 설정
+  setupViewToggle();
+
+  // 이벤트 위임으로 토글 버튼 처리
+  document.addEventListener("click", (e) => {
+    const toggle = e.target.closest(".view-toggle");
+    if (!toggle) return;
+    
+    e.preventDefault();
+    const view = toggle.dataset.view;
+    const viewToggles = document.querySelectorAll(".view-toggle");
+    const postGrids = document.querySelectorAll(".post-grid");
+    
+    // Update active toggle
+    viewToggles.forEach((t) => t.classList.remove("active"));
+    toggle.classList.add("active");
+    
+    // Update all grid classes
+    postGrids.forEach((grid) => {
+      if (view === "list") {
+        grid.classList.add("list-view");
+        grid.classList.remove("grid-view");
+      } else {
+        grid.classList.remove("list-view");
+        grid.classList.add("grid-view");
+      }
+    });
+  });
 
   // Category Filter Functionality - Removed as requested
 
