@@ -1771,24 +1771,33 @@ body#tt-body-guestbook .single-post {
 }
 
 .secret-label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   font-size: 0.95rem;
   color: var(--text-secondary);
   user-select: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .secret-label input[type="checkbox"] {
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   accent-color: var(--accent-color);
+  margin: 0;
 }
 
 .secret-label:hover {
   color: var(--text-color);
+  background: var(--pastel-blue);
+}
+
+.secret-label span {
+  font-weight: 500;
 }
 
 .comment-member-info {
