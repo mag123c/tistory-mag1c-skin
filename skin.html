@@ -564,21 +564,22 @@
                             <div class="comment-input-wrapper">
                                 <s_guest_input_name>
                                     <div class="form-group">
-                                        <input type="text" name="[##_guest_input_name_##]" placeholder="이름" required>
-                                        <input type="password" name="[##_guest_input_password_##]" placeholder="비밀번호" required>
+                                        <input type="text" name="[##_guest_input_name_##]" value="" placeholder="이름" required>
+                                        <input type="password" name="[##_guest_input_password_##]" value="" placeholder="비밀번호" maxlength="8" required>
+                                        <input type="text" name="[##_guest_input_homepage_##]" value="http://" placeholder="홈페이지" style="display:none">
                                     </div>
                                 </s_guest_input_name>
                                 
-                                <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요" required></textarea>
+                                <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요" rows="6" required></textarea>
                                 
                                 <div class="comment-form-footer">
                                     <s_guest_input_is_secret>
                                         <label class="secret-label">
-                                            <input type="checkbox" name="[##_guest_input_is_secret_##]">
+                                            <input type="checkbox" name="[##_guest_input_is_secret_##]" value="1">
                                             <span>비공개</span>
                                         </label>
                                     </s_guest_input_is_secret>
-                                    <button type="submit" onclick="[##_guest_onclick_submit_##]">작성</button>
+                                    <button type="submit" onclick="[##_guest_onclick_submit_##]; return false;">작성</button>
                                 </div>
                             </div>
                         </form>
