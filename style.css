@@ -543,9 +543,18 @@ body.tt-body-search .search-info {
   display: flex;
 }
 
+/* 검색 페이지 전체 섹션 헤더와 겹침 방지 */
+body.tt-body-search .post-list-section {
+  padding-top: 100px; /* 헤더 높이 고려한 상단 여백 */
+  min-height: calc(100vh - 100px); /* 최소 높이 설정 */
+}
+
 body.tt-body-search .section-header {
-  padding-top: 120px; /* 헤더 높이 + 여백 */
+  padding-top: 20px; /* 섹션 내부 여백 */
   margin-bottom: 40px;
+  background: white; /* 배경색 추가로 구분 명확히 */
+  border-radius: 12px;
+  padding: 20px;
 }
 
 /* 기본적으로 컨트롤 버튼은 우측 정렬 */
@@ -555,7 +564,7 @@ body.tt-body-search .section-header {
 
 /* 검색 페이지 레이아웃 조정 */
 body.tt-body-search .main-content {
-  padding-top: 0; /* 검색 정보가 패딩 처리 */
+  padding-top: 0; /* post-list-section이 패딩 처리 */
 }
 
 body.tt-body-search .post-list {
