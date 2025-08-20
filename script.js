@@ -311,25 +311,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // View Toggle Functionality
+  // View Toggle Functionality - 검색 페이지에서도 동작하도록 개선
   const viewToggles = document.querySelectorAll(".view-toggle");
-  const postGrid = document.querySelector(".post-grid");
+  const postGrids = document.querySelectorAll(".post-grid"); // 모든 post-grid 선택
 
-  if (viewToggles.length > 0 && postGrid) {
+  if (viewToggles.length > 0 && postGrids.length > 0) {
     viewToggles.forEach((toggle) => {
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault(); // 기본 동작 방지
         const view = toggle.dataset.view;
 
         // Update active toggle
         viewToggles.forEach((t) => t.classList.remove("active"));
         toggle.classList.add("active");
 
-        // Update grid class
-        if (view === "list") {
-          postGrid.classList.add("list-view");
-        } else {
-          postGrid.classList.remove("list-view");
-        }
+        // Update all grid classes (검색 결과 포함)
+        postGrids.forEach((grid) => {
+          if (view === "list") {
+            grid.classList.add("list-view");
+            grid.classList.remove("grid-view");
+          } else {
+            grid.classList.remove("list-view");
+            grid.classList.add("grid-view");
+          }
+        });
       });
     });
   }
