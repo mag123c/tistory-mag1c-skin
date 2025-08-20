@@ -30,8 +30,8 @@
         <lengthOfLink>30</lengthOfLink>
         <entriesOnPage>10</entriesOnPage>
         <entriesOnList>10</entriesOnList>
-        <showListOnCategory>1</showListOnCategory>
-        <showListOnArchive>1</showListOnArchive>
+        <showListOnCategory>0</showListOnCategory>
+        <showListOnArchive>0</showListOnArchive>
         <showListOnHome>0</showListOnHome>
         <commentMessage>
             <none>댓글이 없습니다.</none>
