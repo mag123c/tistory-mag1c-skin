@@ -1700,12 +1700,14 @@ body#tt-body-guestbook .single-post {
   gap: 12px;
 }
 
-.comment-form .form-group {
+.comment-form .form-group,
+.comment-input-wrapper .form-group {
   display: flex;
   gap: 10px;
 }
 
-.comment-form .form-group input {
+.comment-form .form-group input,
+.comment-input-wrapper .form-group input {
   flex: 1;
   padding: 12px 15px;
   border: 1px solid var(--border-color);
@@ -1716,7 +1718,8 @@ body#tt-body-guestbook .single-post {
   transition: all 0.3s ease;
 }
 
-.comment-form .form-group input:focus {
+.comment-form .form-group input:focus,
+.comment-input-wrapper .form-group input:focus {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(124, 147, 255, 0.1);
@@ -1782,7 +1785,8 @@ body#tt-body-guestbook .single-post {
   box-shadow: 0 0 0 3px rgba(124, 147, 255, 0.1) !important;
 }
 
-.comment-form textarea {
+.comment-form textarea,
+.comment-input-wrapper textarea {
   width: 100%;
   min-height: 100px;
   padding: 15px;
@@ -1795,7 +1799,8 @@ body#tt-body-guestbook .single-post {
   transition: all 0.3s ease;
 }
 
-.comment-form textarea:focus {
+.comment-form textarea:focus,
+.comment-input-wrapper textarea:focus {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(124, 147, 255, 0.1);
