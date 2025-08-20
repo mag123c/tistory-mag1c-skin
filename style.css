@@ -728,13 +728,14 @@ body.tt-body-search .post-list {
 }
 
 .post-grid.list-view .post-card-title {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
 }
 
 .post-grid.list-view .post-card-excerpt {
   display: block;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2; /* 리스트뷰도 2줄로 통일 */
+  max-height: none; /* 리스트뷰에서는 높이 제한 해제 */
 }
 
 /* 포스트 카드 */
@@ -744,7 +745,7 @@ body.tt-body-search .post-list {
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  height: 420px;
+  height: 400px; /* 높이를 줄여서 공간 확보 */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -810,10 +811,10 @@ body.tt-body-search .post-list {
 }
 
 .post-card-title {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  margin-bottom: 8px;
+  line-height: 1.35;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
@@ -837,14 +838,9 @@ body.tt-body-search .post-list {
   flex-shrink: 0;
 }
 
+/* 카테고리 표시 제거됨 - 레이아웃 문제 해결을 위해 */
 .post-card-category {
-  display: inline-block;
-  padding: 3px 8px;
-  background: var(--pastel-yellow);
-  color: var(--text-primary);
-  font-size: 0.75rem;
-  border-radius: 12px;
-  font-weight: 400;
+  display: none;
 }
 
 .post-new-badge {
@@ -861,24 +857,25 @@ body.tt-body-search .post-list {
 }
 
 .post-card-excerpt {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 15px;
+  line-height: 1.6; /* 라인 높이 증가 */
+  margin-bottom: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2; /* 3줄에서 2줄로 줄임 */
   -webkit-box-orient: vertical;
   flex: 1;
-  min-height: 4.5rem; /* 3줄 기준 최소 높이 확보 */
+  min-height: 2.88rem; /* 2줄 * 0.9rem * 1.6 line-height = 2.88rem */
+  max-height: 2.88rem; /* 최대 높이도 고정 */
 }
 
 .post-card-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end; /* 우측 정렬 */
   align-items: center;
-  padding-top: 15px;
+  padding-top: 10px;
   border-top: 1px solid var(--border-color);
   margin-top: auto;
 }
@@ -886,6 +883,7 @@ body.tt-body-search .post-list {
 .post-date {
   font-size: 0.85rem;
   color: var(--text-secondary);
+  text-align: right;
 }
 
 /* 페이지네이션 */
@@ -1456,22 +1454,26 @@ body#tt-body-search section.post-hero {
     display: none !important;
 }
 
-/* 검색 페이지 헤더 스타일 */
-body#tt-body-search .site-header {
+/* 검색 및 카테고리 페이지 헤더 스타일 */
+body#tt-body-search .site-header,
+body#tt-body-category .site-header {
     background: white;
     border-bottom: 1px solid var(--border-color);
     margin-top: 0;
 }
 
-body#tt-body-search .site-header .site-title a {
+body#tt-body-search .site-header .site-title a,
+body#tt-body-category .site-header .site-title a {
     color: var(--text-primary) !important;
 }
 
-body#tt-body-search .site-header .header-controls button {
+body#tt-body-search .site-header .header-controls button,
+body#tt-body-category .site-header .header-controls button {
     color: var(--text-primary) !important;
 }
 
-body#tt-body-search .site-header.hero-header {
+body#tt-body-search .site-header.hero-header,
+body#tt-body-category .site-header.hero-header {
     position: relative;
     background: white;
 }
@@ -1488,13 +1490,15 @@ body#tt-body-search .site-header.hero-header {
     max-width: 100%;
 }
 
-/* 검색 및 방명록 페이지 컨텐츠 겹침 방지 */
+/* 검색, 카테고리 및 방명록 페이지 컨텐츠 겹침 방지 */
 body#tt-body-search main,
+body#tt-body-category main,
 body#tt-body-guestbook main {
     padding-top: 80px;
 }
 
-body#tt-body-search .post-list-section {
+body#tt-body-search .post-list-section,
+body#tt-body-category .post-list-section {
     margin-top: 20px;
 }
 
@@ -1598,7 +1602,7 @@ body#tt-body-guestbook .single-post {
   }
 
   .post-card-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .post-actions {
