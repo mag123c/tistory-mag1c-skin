@@ -4,8 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[##_page_title_##]</title>
+    
+    <!-- SEO 메타 태그 -->
+    <meta name="description" content="[##_desc_##]">
+    <meta name="keywords" content="[##_tags_##]">
+    <link rel="canonical" href="[##_blog_link_##]">
+    
+    <!-- Open Graph 태그 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="[##_page_title_##]">
+    <meta property="og:description" content="[##_desc_##]">
+    <meta property="og:image" content="[##_image_##]">
+    <meta property="og:url" content="[##_blog_link_##]">
+    <meta property="og:site_name" content="[##_title_##]">
+    
+    <!-- Twitter Card 태그 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[##_page_title_##]">
+    <meta name="twitter:description" content="[##_desc_##]">
+    <meta name="twitter:image" content="[##_image_##]">
+    
+    <!-- 티스토리 필수 링크 -->
     <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]">
+    <link rel="pingback" href="[##_pingback_url_##]">
+    
+    <!-- 스타일시트 -->
     <link rel="stylesheet" type="text/css" href="./style.css">
+    
+    <!-- jQuery (티스토리 플러그인용) -->
+    <script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script>
     
     <!-- 구글 애널리틱스 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-96MML77SCQ"></script>
@@ -57,10 +84,16 @@
         <div class="search-modal-content">
             <button class="search-close">&times;</button>
             <s_search>
-                <form id="searchForm" onsubmit="return submitSearch(event)">
-                    <input type="text" id="searchInput" value="[##_search_text_##]" placeholder="검색어를 입력하세요" autofocus>
-                    <button type="submit">검색</button>
-                </form>
+                <div class="search-form-wrapper">
+                    <input type="text" name="[##_search_name_##]" value="[##_search_text_##]" placeholder="검색어를 입력하세요" 
+                           onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }" autofocus>
+                    <button type="button" onclick="[##_search_onclick_submit_##]" class="search-submit-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
             </s_search>
         </div>
     </div>
@@ -73,6 +106,24 @@
         </div>
         <div class="sidebar-content">
             <nav class="sidebar-nav">
+                <!-- 검색 -->
+                <div class="sidebar-section">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: var(--text-primary);">검색</h3>
+                    <s_search>
+                        <div class="sidebar-search">
+                            <input type="text" name="[##_search_name_##]" value="[##_search_text_##]" 
+                                   placeholder="검색어 입력" class="sidebar-search-input"
+                                   onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }">
+                            <button type="button" onclick="[##_search_onclick_submit_##]" class="sidebar-search-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.35-4.35"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </s_search>
+                </div>
+                
                 <!-- 카테고리 -->
                 <s_sidebar_element>
                     <div class="sidebar-section">
@@ -198,6 +249,22 @@
             </div>
         </section>
 
+        <!-- 공지사항 -->
+        <s_notice_rep>
+            <section class="notice-section">
+                <article class="notice-card">
+                    <div class="notice-badge">공지</div>
+                    <a href="[##_notice_rep_link_##]" class="notice-link">
+                        <h3 class="notice-title">[##_notice_rep_title_##]</h3>
+                        <p class="notice-summary">[##_notice_rep_summary_##]</p>
+                        <div class="notice-meta">
+                            <span class="notice-date">[##_notice_rep_date_##]</span>
+                        </div>
+                    </a>
+                </article>
+            </section>
+        </s_notice_rep>
+        
         <!-- 게시글 리스트 섹션 -->
         <s_list>
             <section class="post-list-section">
@@ -260,6 +327,9 @@
                                     <p class="post-card-excerpt">[##_list_rep_summary_##]</p>
                                     <div class="post-card-meta">
                                         <span class="post-date">[##_list_rep_regdate_##]</span>
+                                        <s_list_rep_rp_cnt>
+                                            <span class="post-comments">댓글 [##_list_rep_rp_cnt_##]</span>
+                                        </s_list_rep_rp_cnt>
                                     </div>
                                 </div>
                             </a>
@@ -270,13 +340,27 @@
                 <!-- 페이지네이션 -->
                 <s_paging>
                     <div class="pagination">
-                        <s_paging_prev>
-                            <a href="[##_prev_page_##]" class="prev-page">이전</a>
-                        </s_paging_prev>
-                        [##_paging_list_##]
-                        <s_paging_next>
-                            <a href="[##_next_page_##]" class="next-page">다음</a>
-                        </s_paging_next>
+                        <s_not_no_more_prev>
+                            <a href="[##_prev_page_##]" class="page-btn prev">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </a>
+                        </s_not_no_more_prev>
+                        
+                        <div class="page-numbers">
+                            <s_paging_rep>
+                                <a href="[##_paging_rep_link_##]" class="page-num [##_paging_rep_link_selected_##]">[##_paging_rep_link_num_##]</a>
+                            </s_paging_rep>
+                        </div>
+                        
+                        <s_not_no_more_next>
+                            <a href="[##_next_page_##]" class="page-btn next">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </a>
+                        </s_not_no_more_next>
                     </div>
                 </s_paging>
             </section>
@@ -357,6 +441,28 @@
             </section>
             
             <article class="single-post">
+                <!-- 보호글 처리 -->
+                <s_article_protected>
+                    <div class="protected-post">
+                        <div class="protected-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <h2 class="protected-title">비밀번호로 보호된 글입니다</h2>
+                        <p class="protected-desc">이 글을 보시려면 비밀번호를 입력해주세요.</p>
+                        <form class="protected-form">
+                            <input type="password" 
+                                   name="[##_article_password_##]" 
+                                   placeholder="비밀번호 입력"
+                                   maxlength="16"
+                                   onkeydown="if (event.keyCode == 13)[##_article_dissolve_##]">
+                            <button type="button" onclick="[##_article_dissolve_##]">확인</button>
+                        </form>
+                    </div>
+                </s_article_protected>
+                
                 <div class="post-content">
                     [##_article_rep_desc_##]
                 </div>

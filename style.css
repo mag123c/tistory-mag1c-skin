@@ -288,8 +288,15 @@ body {
   border-color: var(--accent-color);
 }
 
-.search-modal button[type="submit"] {
-  padding: 15px 30px;
+/* 검색 모달 폼 */
+.search-form-wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.search-submit-btn {
+  padding: 12px 20px;
   background: var(--accent-color);
   color: white;
   border: none;
@@ -298,11 +305,53 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.search-modal button[type="submit"]:hover {
+.search-submit-btn:hover {
   background: var(--accent-hover);
   transform: translateY(-2px);
+}
+
+/* 사이드바 검색 */
+.sidebar-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.sidebar-search-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: white;
+  transition: border-color 0.3s;
+}
+
+.sidebar-search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.sidebar-search-btn {
+  padding: 10px 14px;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-search-btn:hover {
+  background: var(--accent-hover);
 }
 
 /* 메인 콘텐츠 */
@@ -842,18 +891,28 @@ body.tt-body-search .post-list {
   border-color: var(--accent-color);
 }
 
-.prev-page,
-.next-page {
-  padding: 10px 20px !important;
+.page-btn.prev,
+.page-btn.next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px !important;
   background: var(--pastel-purple) !important;
   border: none !important;
   font-weight: 500;
+  width: 44px;
+  height: 44px;
 }
 
-.prev-page:hover,
-.next-page:hover {
+.page-btn.prev:hover,
+.page-btn.next:hover {
   background: var(--accent-color) !important;
   color: white;
+  transform: translateY(-2px);
+}
+
+.page-btn svg {
+  flex-shrink: 0;
 }
 
 /* 포스트 히어로 섹션 */
