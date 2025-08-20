@@ -317,9 +317,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // View Toggle Functionality - 이벤트 위임으로 검색 페이지에서도 동작
+  // View Toggle Functionality - 모든 페이지에서 동작하도록 개선
   function setupViewToggle() {
     const postGrids = document.querySelectorAll(".post-grid");
+    const viewToggles = document.querySelectorAll(".view-toggle");
     
     // 페이지 로드 시 기본값을 그리드로 설정
     if (postGrids.length > 0) {
@@ -328,22 +329,40 @@ document.addEventListener("DOMContentLoaded", function () {
         grid.classList.remove("list-view");
       });
     }
+    
+    // 그리드 버튼을 활성화 상태로 설정
+    if (viewToggles.length > 0) {
+      viewToggles.forEach((toggle) => {
+        if (toggle.dataset.view === "grid") {
+          toggle.classList.add("active");
+        } else {
+          toggle.classList.remove("active");
+        }
+      });
+    }
   }
 
   // 초기 설정
   setupViewToggle();
 
-  // 이벤트 위임으로 토글 버튼 처리
+  // 이벤트 위임으로 토글 버튼 처리 - 더 강력한 선택자 사용
   document.addEventListener("click", (e) => {
-    const toggle = e.target.closest(".view-toggle");
-    if (!toggle) return;
+    // 더 정확한 버튼 감지
+    const toggle = e.target.closest(".view-toggle") || 
+                   (e.target.classList.contains("view-toggle") ? e.target : null);
+    
+    if (!toggle || !toggle.dataset.view) return;
     
     e.preventDefault();
+    e.stopPropagation();
+    
     const view = toggle.dataset.view;
     const viewToggles = document.querySelectorAll(".view-toggle");
     const postGrids = document.querySelectorAll(".post-grid");
     
-    // Update active toggle
+    console.log(`Switching to ${view} view`); // 디버깅용
+    
+    // Update active toggle - 모든 버튼에서 active 제거 후 현재 버튼만 활성화
     viewToggles.forEach((t) => t.classList.remove("active"));
     toggle.classList.add("active");
     
@@ -357,6 +376,30 @@ document.addEventListener("DOMContentLoaded", function () {
         grid.classList.add("grid-view");
       }
     });
+  });
+  
+  // MutationObserver를 사용하여 동적으로 추가된 요소도 처리
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        // 새로 추가된 뷰 토글 버튼이나 포스트 그리드 확인
+        const hasNewToggles = mutation.addedNodes.length > 0 && 
+          Array.from(mutation.addedNodes).some(node => 
+            node.nodeType === 1 && 
+            (node.querySelector && node.querySelector('.view-toggle'))
+          );
+        
+        if (hasNewToggles) {
+          setTimeout(setupViewToggle, 100); // 약간의 지연 후 재설정
+        }
+      }
+    });
+  });
+  
+  // 전체 document 관찰
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
   });
 
   // Category Filter Functionality - Removed as requested
