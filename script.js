@@ -13,6 +13,23 @@ function submitSearch(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  // 카테고리 글 개수 괄호 제거
+  document.querySelectorAll('.category-tree .c_cnt').forEach(function(cnt) {
+    let text = cnt.textContent;
+    cnt.textContent = text.replace(/[()]/g, '');
+  });
+  
+  // 빈 사이드바 섹션 숨기기
+  document.querySelectorAll('.sidebar-section').forEach(function(section) {
+    const links = section.querySelector('.sidebar-links');
+    if (links) {
+      const hasContent = links.querySelectorAll('li').length > 0;
+      if (!hasContent) {
+        section.style.display = 'none';
+      }
+    }
+  });
+
   // Build carousel from post data for homepage
   const carousel = document.querySelector(".hero-carousel");
   const isHomePage = document.body.id === "tt-body-index";

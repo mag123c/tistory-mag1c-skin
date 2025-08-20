@@ -1521,6 +1521,11 @@ body#tt-body-guestbook .single-post {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+/* 분류 전체보기 링크 숨기기 */
+.category-tree a.link_tit {
+  display: none !important;
+}
+
 .category-tree ul.tt_category,
 .category-tree ul.category_list,
 .category-tree ul.sub_category_list {
@@ -1530,8 +1535,9 @@ body#tt-body-guestbook .single-post {
 }
 
 .category-tree ul.category_list {
-  margin-top: 8px;
-  margin-left: 5px;
+  margin-top: 0;
+  margin-left: 0;
+  padding-top: 0;
 }
 
 .category-tree ul.sub_category_list {
@@ -1550,7 +1556,9 @@ body#tt-body-guestbook .single-post {
   background: var(--border-color);
 }
 
-.category-tree a.link_tit {
+/* 분류 전체보기는 위에서 숨김 처리 */
+
+.category-tree a.link_item {
   color: var(--text-primary);
   text-decoration: none;
   display: flex;
@@ -1558,35 +1566,16 @@ body#tt-body-guestbook .single-post {
   padding: 12px;
   transition: all 0.3s;
   border-radius: 8px;
+  margin-bottom: 8px;
+  position: relative;
   font-weight: 600;
-  margin-bottom: 12px;
   background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-pink) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.category-tree a.link_tit::before {
-  content: '📁';
-  margin-right: 8px;
-  font-size: 1.1rem;
-}
-
-.category-tree a.link_item {
-  color: var(--text-primary);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  padding: 10px 12px;
-  transition: all 0.3s;
-  border-radius: 6px;
-  margin-bottom: 5px;
-  position: relative;
-  font-weight: 500;
 }
 
 .category-tree a.link_item::before {
-  content: '📂';
+  content: '📁';
   margin-right: 8px;
+  font-size: 1.1rem;
 }
 
 .category-tree a.link_sub_item {
@@ -1603,14 +1592,11 @@ body#tt-body-guestbook .single-post {
   position: relative;
 }
 
-.category-tree a.link_sub_item::before {
-  content: '📄';
-  position: absolute;
-  left: 12px;
+.category-tree a.link_item:hover {
+  opacity: 0.9;
+  transform: translateX(5px);
 }
 
-.category-tree a.link_tit:hover,
-.category-tree a.link_item:hover,
 .category-tree a.link_sub_item:hover {
   background: var(--pastel-blue);
   transform: translateX(5px);
@@ -1630,6 +1616,15 @@ body#tt-body-guestbook .single-post {
   justify-content: center;
   min-width: 24px;
   height: 20px;
+}
+
+/* 카테고리 글 개수 괄호 제거 */
+.category-tree .c_cnt::before {
+  content: '';
+}
+
+.category-tree .c_cnt::after {
+  content: '';
 }
 
 /* NEW 아이콘 숨기기 */
