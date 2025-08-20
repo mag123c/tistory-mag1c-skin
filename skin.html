@@ -43,11 +43,6 @@
       gtag('config', 'G-96MML77SCQ');
     </script>
     
-    <!-- 구글 애드센스 -->
-    <meta name="google-adsense-platform-account" content="ca-host-pub-9691043933427338">
-    <meta name="google-adsense-platform-domain" content="tistory.com">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    
     <!-- 티스토리 기본 기능 (T버튼 없이) -->
     <script type="text/javascript">
         window.hideMenubar = true;
@@ -106,24 +101,6 @@
         </div>
         <div class="sidebar-content">
             <nav class="sidebar-nav">
-                <!-- 검색 -->
-                <div class="sidebar-section">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: var(--text-primary);">검색</h3>
-                    <s_search>
-                        <div class="sidebar-search">
-                            <input type="text" name="[##_search_name_##]" value="[##_search_text_##]" 
-                                   placeholder="검색어 입력" class="sidebar-search-input"
-                                   onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }">
-                            <button type="button" onclick="[##_search_onclick_submit_##]" class="sidebar-search-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.35-4.35"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </s_search>
-                </div>
-                
                 <!-- 카테고리 -->
                 <s_sidebar_element>
                     <div class="sidebar-section">
@@ -350,7 +327,7 @@
                         
                         <div class="page-numbers">
                             <s_paging_rep>
-                                <a href="[##_paging_rep_link_##]" class="page-num [##_paging_rep_link_selected_##]">[##_paging_rep_link_num_##]</a>
+                                <a class="page-num" [##_paging_rep_link_##]>[##_paging_rep_link_num_##]</a>
                             </s_paging_rep>
                         </div>
                         
@@ -696,18 +673,6 @@
             </article>
         </s_guest>
 
-        <!-- 애드센스 광고 -->
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7990673941637819"
-                 data-ad-slot="auto"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
     </main>
 
     <!-- 플로팅 버튼 -->

@@ -868,8 +868,13 @@ body.tt-body-search .post-list {
   padding: 20px;
 }
 
-.pagination a,
-.pagination span {
+/* 페이지 번호 스타일 */
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-num {
   padding: 10px 15px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -877,18 +882,24 @@ body.tt-body-search .post-list {
   text-decoration: none;
   transition: all 0.3s ease;
   background: white;
+  cursor: pointer;
 }
 
-.pagination a:hover {
+.page-num:hover {
   background: var(--pastel-blue);
   border-color: var(--accent-color);
   transform: translateY(-2px);
 }
 
-.pagination .selected {
+/* 현재 페이지 스타일 - Tistory가 span.selected를 자동으로 추가 */
+.page-num span.selected {
+  display: inline-block;
+  padding: 10px 15px;
   background: var(--accent-color);
   color: white;
-  border-color: var(--accent-color);
+  border-radius: 8px;
+  border: 1px solid var(--accent-color);
+  margin: -10px -15px; /* 부모 padding 상쇄 */
 }
 
 .page-btn.prev,

@@ -1,16 +1,5 @@
-// Search form submission handler
-function submitSearch(event) {
-  event.preventDefault();
-  const searchInput = document.getElementById('searchInput');
-  const searchQuery = searchInput.value.trim();
-  
-  if (searchQuery) {
-    // Redirect to Tistory search URL format: /search/keyword
-    window.location.href = '/search/' + encodeURIComponent(searchQuery);
-  }
-  
-  return false;
-}
+// Note: Search functionality now uses native Tistory search variables
+// [##_search_name_##] and [##_search_onclick_submit_##]
 
 document.addEventListener("DOMContentLoaded", function () {
   // 카테고리 글 개수 괄호 제거
