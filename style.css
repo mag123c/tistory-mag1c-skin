@@ -1489,6 +1489,12 @@ body {
   display: none !important;
 }
 
+/* 티스토리 기본 네임카드 숨기기 */
+.tt_box_namecard,
+[data-tistory-react-app="Namecard"] {
+  display: none !important;
+}
+
 /* 작성자 프로필 */
 .author-profile {
   display: flex;
