@@ -535,14 +535,22 @@ body {
   gap: 8px;
   font-size: 1.1rem;
   color: var(--text-primary);
-  flex-grow: 1;
+  flex-grow: 1; /* 남은 공간 차지 */
+}
+
+/* 검색 페이지에서만 검색 정보 표시 및 레이아웃 조정 */
+body.tt-body-search .search-info {
+  display: flex;
+}
+
+body.tt-body-search .section-header {
   padding-top: 120px; /* 헤더 높이 + 여백 */
   margin-bottom: 40px;
 }
 
-/* 검색 페이지에서만 검색 정보 표시 */
-body.tt-body-search .search-info {
-  display: flex;
+/* 기본적으로 컨트롤 버튼은 우측 정렬 */
+.section-controls {
+  margin-left: auto;
 }
 
 /* 검색 페이지 레이아웃 조정 */
