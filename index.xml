@@ -32,6 +32,7 @@
         <entriesOnList>10</entriesOnList>
         <showListOnCategory>1</showListOnCategory>
         <showListOnArchive>1</showListOnArchive>
+        <showListOnHome>0</showListOnHome>
         <commentMessage>
             <none>댓글이 없습니다.</none>
             <single>댓글 &lt;span class="cnt"&gt;[##_article_rep_rp_cnt_##]&lt;/span&gt;개</single>

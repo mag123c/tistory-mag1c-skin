@@ -87,7 +87,7 @@ body {
 .header-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 20px; /* 헤더 좌우 여백 줄임 */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -638,12 +638,14 @@ body.tt-body-search .search-info {
   flex-direction: row;
   align-items: stretch;
   height: 100%;
+  min-height: 200px; /* 최소 높이 설정 */
 }
 
 .post-grid.list-view .post-card-thumbnail {
   width: 300px;
   min-width: 300px;
-  height: 200px;
+  height: 100%; /* 부모 높이의 100% 차지 */
+  min-height: 200px;
   border-radius: 12px 0 0 12px;
   flex-shrink: 0;
 }
@@ -1423,32 +1425,40 @@ body {
   }
 }
 
-/* 카테고리 트리 */
+/* 카테고리 트리 - 티스토리 기본 카테고리 스타일 */
 .category-tree {
   font-size: 0.95rem;
 }
 
-.category-tree ul {
+.category-tree ul.tt_category,
+.category-tree ul.category_list,
+.category-tree ul.sub_category_list {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.category-tree ul ul {
+.category-tree ul.category_list,
+.category-tree ul.sub_category_list {
   padding-left: 20px;
   margin-top: 5px;
 }
 
-.category-tree a {
+.category-tree a.link_tit,
+.category-tree a.link_item,
+.category-tree a.link_sub_item {
   color: var(--text-primary);
   text-decoration: none;
   display: block;
   padding: 8px 0;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  border-radius: 4px;
+  padding-left: 10px;
 }
 
 .category-tree a:hover {
   color: var(--accent-color);
+  background: rgba(74, 144, 226, 0.1);
 }
 
 .category-tree .c_cnt {
@@ -1457,8 +1467,9 @@ body {
   margin-left: 5px;
 }
 
+/* NEW 아이콘 숨기기 */
 .category-tree img {
-  display: none;
+  display: none !important;
 }
 
 /* 작성자 프로필 */
