@@ -562,13 +562,15 @@
                     <s_guest_input_form>
                         <form method="post" action="[##_guest_input_form_##]" class="comment-form">
                             <div class="comment-input-wrapper">
-                                <s_guest_input_name>
-                                    <div class="form-group">
-                                        <input type="text" name="[##_guest_input_name_##]" value="" placeholder="이름" required>
-                                        <input type="password" name="[##_guest_input_password_##]" value="" placeholder="비밀번호" maxlength="8" required>
-                                        <input type="text" name="[##_guest_input_homepage_##]" value="http://" placeholder="홈페이지" style="display:none">
-                                    </div>
-                                </s_guest_input_name>
+                                <s_guest_member>
+                                    <s_guest_form>
+                                        <div class="form-group">
+                                            <input type="text" name="[##_guest_input_name_##]" value="[##_guest_name_##]" placeholder="이름" required>
+                                            <input type="password" name="[##_guest_input_password_##]" value="[##_guest_password_##]" placeholder="비밀번호" maxlength="8" required>
+                                            <input type="text" name="[##_guest_input_homepage_##]" value="[##_guest_homepage_##]" placeholder="홈페이지" style="display:none">
+                                        </div>
+                                    </s_guest_form>
+                                </s_guest_member>
                                 
                                 <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요" rows="6" required></textarea>
                                 
