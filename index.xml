@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+    <information>
+        <name>Modern Carousel</name>
+        <version>1.0</version>
+        <description>
+            <![CDATA[수정 재배포 가능하나, Footer의 원작자 명시는 유지해주세요. (관련 문의는 diehreo@gmail.com로 부탁드립니다.)]]>
+        </description>
+        <license>
+            <![CDATA[© mag1c]]>
+        </license>
+    </information>
+    <author>
+        <name><![CDATA[mag1c]]></name>
+        <homepage>https://mag1c.tistory.com</homepage>
+        <email>diehreo@gmail.com</email>
+    </author>
+    <default>
+        <recentEntries>5</recentEntries>
+        <recentComments>5</recentComments>
+        <itemsOnGuestbook>10</itemsOnGuestbook>
+        <tagsInCloud>30</tagsInCloud>
+        <sortInCloud>3</sortInCloud>
+        <expandComment>0</expandComment>
+        <expandTrackback>0</expandTrackback>
+        <lengthOfRecentNotice>25</lengthOfRecentNotice>
+        <lengthOfRecentEntry>27</lengthOfRecentEntry>
+        <lengthOfRecentComment>30</lengthOfRecentComment>
+        <lengthOfRecentTrackback>30</lengthOfRecentTrackback>
+        <lengthOfLink>30</lengthOfLink>
+        <entriesOnPage>10</entriesOnPage>
+        <entriesOnList>10</entriesOnList>
+        <showListOnCategory>1</showListOnCategory>
+        <showListOnArchive>1</showListOnArchive>
+        <commentMessage>
+            <none>댓글이 없습니다.</none>
+            <single>댓글 &lt;span class="cnt"&gt;[##_article_rep_rp_cnt_##]&lt;/span&gt;개</single>
+        </commentMessage>
+        <trackbackMessage>
+            <none>트랙백이 없습니다.</none>
+            <single>트랙백 &lt;span class="cnt"&gt;[##_article_rep_tb_cnt_##]&lt;/span&gt;개</single>
+        </trackbackMessage>
+    </default>
+    <variables>
+        <variablegroup name="Footer SNS 링크 설정">
+            <variable>
+                <name>footer-sns-email</name>
+                <label><![CDATA[ Email Address ]]></label>
+                <description><![CDATA[ Footer에 표시할 이메일 주소 ]]></description>
+                <type>STRING</type>
+                <default />
+            </variable>
+            <variable>
+                <name>footer-sns-github</name>
+                <label><![CDATA[ GitHub URL ]]></label>
+                <description><![CDATA[ Footer에 표시할 GitHub 링크 ]]></description>
+                <type>STRING</type>
+                <default />
+            </variable>
+            <variable>
+                <name>footer-sns-instagram</name>
+                <label><![CDATA[ Instagram URL ]]></label>
+                <description><![CDATA[ Footer에 표시할 Instagram 링크 ]]></description>
+                <type>STRING</type>
+                <default />
+            </variable>
+            <variable>
+                <name>footer-sns-linkedin</name>
+                <label><![CDATA[ LinkedIn URL ]]></label>
+                <description><![CDATA[ Footer에 표시할 LinkedIn 링크 ]]></description>
+                <type>STRING</type>
+                <default />
+            </variable>
+            <variable>
+                <name>footer-sns-twitter</name>
+                <label><![CDATA[ Twitter URL ]]></label>
+                <description><![CDATA[ Footer에 표시할 Twitter 링크 ]]></description>
+                <type>STRING</type>
+                <default />
+            </variable>
+            <variable>
+                <name>footer-sns-youtube</name>
+                <label><![CDATA[ YouTube URL ]]></label>
+                <description><![CDATA[ Footer에 표시할 YouTube 링크 ]]></description>
+                <type>STRING</type>
+                <default />
+            </variable>
+        </variablegroup>
+    </variables>
+</skin>
