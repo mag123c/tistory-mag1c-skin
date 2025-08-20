@@ -561,26 +561,42 @@
                     <!-- 방명록 작성 폼 -->
                     <s_guest_input_form>
                         <form method="post" action="[##_guest_input_form_##]" class="comment-form">
-                            <div class="comment-input-wrapper">
-                                <s_guest_not_member>
+                            <s_guest_member>
+                                <div class="comment-input-wrapper">
+                                    <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요" required></textarea>
+                                    
+                                    <div class="comment-form-footer">
+                                        <s_guest_input_is_secret>
+                                            <label class="secret-label">
+                                                <input type="checkbox" name="[##_guest_input_is_secret_##]">
+                                                <span>비공개</span>
+                                            </label>
+                                        </s_guest_input_is_secret>
+                                        <button type="submit" onclick="[##_guest_onclick_submit_##]">작성</button>
+                                    </div>
+                                </div>
+                            </s_guest_member>
+                            
+                            <s_guest_not_member>
+                                <div class="comment-input-wrapper">
                                     <div class="form-group">
                                         <input type="text" name="[##_guest_input_name_##]" placeholder="이름" required>
                                         <input type="password" name="[##_guest_input_password_##]" placeholder="비밀번호" required>
                                     </div>
-                                </s_guest_not_member>
-                                
-                                <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요" required></textarea>
-                                
-                                <div class="comment-form-footer">
-                                    <s_guest_input_is_secret>
-                                        <label class="secret-label">
-                                            <input type="checkbox" name="[##_guest_input_is_secret_##]">
-                                            <span>비공개</span>
-                                        </label>
-                                    </s_guest_input_is_secret>
-                                    <button type="submit" onclick="[##_guest_onclick_submit_##]">작성</button>
+                                    
+                                    <textarea name="[##_guest_textarea_body_##]" placeholder="방명록을 남겨주세요" required></textarea>
+                                    
+                                    <div class="comment-form-footer">
+                                        <s_guest_input_is_secret>
+                                            <label class="secret-label">
+                                                <input type="checkbox" name="[##_guest_input_is_secret_##]">
+                                                <span>비공개</span>
+                                            </label>
+                                        </s_guest_input_is_secret>
+                                        <button type="submit" onclick="[##_guest_onclick_submit_##]">작성</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </s_guest_not_member>
                         </form>
                     </s_guest_input_form>
                 </section>
