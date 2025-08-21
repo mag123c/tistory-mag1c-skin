@@ -402,7 +402,70 @@ document.addEventListener("DOMContentLoaded", function () {
     subtree: true
   });
 
-  // Category Filter Functionality - Removed as requested
+  // 접은글 (더보기) 기능
+  function initMoreLess() {
+    document.querySelectorAll('div[data-ke-type="moreLess"]').forEach(function(container) {
+      const toggleBtn = container.querySelector('.btn-toggle-moreless');
+      const content = container.querySelector('.moreless-content');
+      
+      if (toggleBtn && content) {
+        // 제목 커스터마이징: data-text-more 속성 사용
+        let moreText = container.getAttribute('data-text-more') || '더보기';
+        let lessText = container.getAttribute('data-text-less') || '접기';
+        
+        // 첫 번째 h3 태그를 찾아서 제목으로 사용
+        const firstHeading = content.querySelector('h3');
+        if (firstHeading && firstHeading.textContent.trim()) {
+          moreText = firstHeading.textContent.trim();
+          lessText = firstHeading.textContent.trim();
+        }
+        
+        // 초기 상태 설정
+        let isOpen = false;
+        toggleBtn.textContent = moreText;
+        
+        // 토글 이벤트
+        toggleBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          isOpen = !isOpen;
+          
+          if (isOpen) {
+            content.classList.add('show');
+            toggleBtn.classList.add('open');
+            // 열렸을 때는 제목 그대로 유지하거나 '접기' 표시
+            if (container.hasAttribute('data-text-less')) {
+              toggleBtn.textContent = lessText;
+            }
+          } else {
+            content.classList.remove('show');
+            toggleBtn.classList.remove('open');
+            toggleBtn.textContent = moreText;
+          }
+        });
+      }
+    });
+  }
+  
+  // 페이지 로드 시 접은글 초기화
+  initMoreLess();
+  
+  // AJAX 등으로 동적 컨텐츠 로드 시 재초기화
+  const morelessObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.addedNodes.length) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1 && node.querySelector && node.querySelector('div[data-ke-type="moreLess"]')) {
+            initMoreLess();
+          }
+        });
+      }
+    });
+  });
+  
+  morelessObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

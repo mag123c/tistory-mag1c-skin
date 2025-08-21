@@ -1115,10 +1115,51 @@ body.tt-body-search .post-list {
   margin: 2em 0;
 }
 
-.post-content code {
-  background: var(--pastel-blue);
-  padding: 2px 6px;
-  border-radius: 4px;
+/* 인라인 코드 스타일 (백틱) */
+.post-content code,
+.article-content code,
+p code,
+li code,
+td code {
+  background: linear-gradient(135deg, #f5f7ff, #f0f4ff);
+  color: #d63384;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  font-weight: 500;
+  border: 1px solid rgba(74, 144, 226, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+}
+
+/* pre 내부의 code는 스타일 제외 */
+pre code,
+.hljs code,
+[data-ke-type="codeblock"] code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: inherit !important;
+  white-space: pre !important;
+  display: block !important;
+  line-height: inherit !important;
+}
+
+.post-content code:hover,
+.article-content code:hover,
+p code:hover,
+li code:hover,
+td code:hover {
+  background: linear-gradient(135deg, #e8ecff, #e0e8ff);
+  border-color: rgba(74, 144, 226, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   font-family: "Courier New", Courier, monospace;
   font-size: 0.95em;
 }
@@ -1799,6 +1840,90 @@ body#tt-body-guestbook .single-post {
 
 .author-links a:hover {
   color: var(--accent-color);
+}
+
+/* 접은글 (더보기) 스타일 - 꺾쇠 스타일 */
+.btn-toggle-moreless {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: transparent;
+  color: var(--primary-color);
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  position: relative;
+  user-select: none;
+}
+
+.btn-toggle-moreless:hover {
+  background: var(--pastel-blue);
+  border-color: var(--primary-color);
+  transform: translateX(2px);
+}
+
+.btn-toggle-moreless::before {
+  content: '▶';
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 0.75em;
+  margin-right: 2px;
+}
+
+.btn-toggle-moreless.open::before {
+  transform: rotate(90deg);
+}
+
+.btn-toggle-moreless::after {
+  display: none;
+}
+
+/* 접은글 컨테이너 */
+div[data-ke-type="moreLess"] {
+  margin: 25px 0;
+  position: relative;
+}
+
+/* 접은글 내용 */
+.moreless-content {
+  margin-top: 12px;
+  padding: 0;
+  background: transparent;
+  border-left: 2.5px solid var(--primary-color);
+  padding-left: 18px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.moreless-content.show {
+  max-height: 5000px;
+  opacity: 1;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+
+/* 접은글 내부 콘텐츠 스타일링 */
+.moreless-content h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.moreless-content p:first-child {
+  margin-top: 0;
+}
+
+.moreless-content p:last-child {
+  margin-bottom: 0;
 }
 
 /* 댓글 섹션 */
