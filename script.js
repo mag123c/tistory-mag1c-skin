@@ -469,8 +469,15 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
     
+    // code.hljs 요소에 margin-top: 0 강제 적용
+    const hljsCodeBlocks = document.querySelectorAll('code.hljs');
+    hljsCodeBlocks.forEach(code => {
+      code.style.marginTop = '0px';
+      code.style.marginBottom = '0px';
+    });
+    
     // 인라인 코드 스타일 강제 적용 - 백틱 스타일
-    const inlineCodes = document.querySelectorAll('code:not(pre code), p code, li code, td code');
+    const inlineCodes = document.querySelectorAll('code:not(pre code):not(.hljs), p code:not(.hljs), li code:not(.hljs), td code:not(.hljs)');
     inlineCodes.forEach(code => {
       // 인라인 스타일 제거
       code.removeAttribute('style');
@@ -492,6 +499,114 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // 초기 실행
   enforceCodeBlockStyles();
+  
+  // TOC (Table of Contents) 생성
+  function generateTOC() {
+    // 포스트 페이지인지 확인
+    const postContent = document.querySelector('.post-content');
+    const singlePost = document.querySelector('.single-post');
+    
+    if (!postContent || !singlePost) return;
+    
+    // 모든 헤딩 태그 수집 (h2, h3, h4)
+    const headings = postContent.querySelectorAll('h2, h3, h4');
+    
+    if (headings.length === 0) return;
+    
+    // TOC 컨테이너 생성
+    const tocContainer = document.createElement('div');
+    tocContainer.className = 'toc-container';
+    
+    const tocTitle = document.createElement('div');
+    tocTitle.className = 'toc-title';
+    tocTitle.textContent = '목차';
+    tocContainer.appendChild(tocTitle);
+    
+    const tocList = document.createElement('ul');
+    tocList.className = 'toc-list';
+    
+    // 각 헤딩에 대한 TOC 아이템 생성
+    headings.forEach((heading, index) => {
+      // 헤딩에 ID 추가 (없는 경우)
+      if (!heading.id) {
+        heading.id = `heading-${index}`;
+      }
+      
+      // TOC 아이템 생성
+      const tocItem = document.createElement('li');
+      const tagName = heading.tagName.toLowerCase();
+      tocItem.className = `toc-item toc-${tagName}`;
+      
+      const tocLink = document.createElement('a');
+      tocLink.className = 'toc-link';
+      tocLink.href = `#${heading.id}`;
+      tocLink.textContent = heading.textContent;
+      
+      // 부드러운 스크롤
+      tocLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(tocLink.getAttribute('href'));
+        if (target) {
+          const yOffset = -80; // 헤더 높이 고려
+          const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          // URL 업데이트
+          history.pushState(null, null, tocLink.getAttribute('href'));
+        }
+      });
+      
+      tocItem.appendChild(tocLink);
+      tocList.appendChild(tocItem);
+    });
+    
+    tocContainer.appendChild(tocList);
+    
+    // TOC를 body에 직접 추가 (고정 위치)
+    document.body.appendChild(tocContainer);
+    
+    // 스크롤 시 활성 섹션 하이라이트
+    let currentActiveLink = null;
+    
+    function updateActiveLink() {
+      const scrollPosition = window.scrollY + 100; // 헤더 높이 고려
+      
+      let activeHeading = null;
+      headings.forEach(heading => {
+        if (heading.offsetTop <= scrollPosition) {
+          activeHeading = heading;
+        }
+      });
+      
+      if (activeHeading) {
+        const newActiveLink = tocContainer.querySelector(`a[href="#${activeHeading.id}"]`);
+        
+        if (currentActiveLink !== newActiveLink) {
+          if (currentActiveLink) {
+            currentActiveLink.classList.remove('active');
+          }
+          if (newActiveLink) {
+            newActiveLink.classList.add('active');
+            currentActiveLink = newActiveLink;
+          }
+        }
+      }
+    }
+    
+    // 스크롤 이벤트에 디바운싱 적용
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(updateActiveLink, 10);
+    });
+    
+    // 초기 활성 링크 설정
+    updateActiveLink();
+  }
+  
+  // 페이지 로드 시 TOC 생성
+  generateTOC();
   
   // DOM 변경 감지하여 재적용 - 무한루프 방지
   let isEnforcing = false;
