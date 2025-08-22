@@ -1408,11 +1408,16 @@ td code {
   color: #005cc5 !important; /* 파란색 */
 }
 
-.post-content img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: 1em 0;
+.post-content img,
+.tt-body-page figure.imageblock img,
+figure.imageblock img,
+#tt-body-page figure img,
+figure img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 8px !important;
+  margin: 1em 0 !important;
+  display: inline-block !important;
 }
 
 .post-content a {
