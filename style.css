@@ -1,5 +1,18 @@
-/* 폰트 임포트 */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+/* 기본 폰트 */
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 코드블럭용 특수 폰트 */
+@font-face {
+    font-family: 'GangwonEduSaeeum_OTFMediumA';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* 색상 변수 정의 */
 :root {
@@ -31,7 +44,7 @@ html {
 }
 
 body {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: 'omyu_pretty', -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   color: var(--text-primary);
   background: var(--background);
@@ -40,6 +53,12 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* 티스토리 기본 폰트 오버라이드 */
+.tt_article_useless_p_margin,
+.contents_style {
+  font-family: 'omyu_pretty', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
 }
 
 /* 티스토리 기본 요소 숨기기 */
@@ -1081,6 +1100,138 @@ body.tt-body-search .post-list {
   margin-bottom: 1.5em;
 }
 
+/* 티스토리 특수 클래스 대응 - 더 강력한 선택자 */
+.tt_article_useless_p_margin p,
+.contents_style p,
+div[class*="article"] p,
+div[class*="content"] p,
+.post-content p,
+article p {
+  font-size: 1.25rem !important;
+  line-height: 1.9 !important;
+  margin-bottom: 1.5em !important;
+  font-family: 'omyu_pretty', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+}
+
+/* 티스토리 에디터 제목 태그 우선순위 강화 */
+.tt_article_useless_p_margin h1,
+.contents_style h1,
+.post-content h1 {
+  font-size: 3rem !important;
+  margin-top: 2em !important;
+  margin-bottom: 1em !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+
+.tt_article_useless_p_margin h2,
+.contents_style h2,
+.post-content h2 {
+  font-size: 2.5rem !important;
+  margin-top: 2em !important;
+  margin-bottom: 1.2em !important;
+  padding-bottom: 0.3em !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  position: relative !important;
+}
+
+/* H2 그라데이션 언더라인 강화 - 더 진한 색상 */
+.tt_article_useless_p_margin h2::after,
+.contents_style h2::after,
+.post-content h2::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 5px !important;
+  background: linear-gradient(90deg, 
+    #9c27b0 0%,    /* 진한 보라 */
+    #2196f3 25%,   /* 진한 파랑 */
+    #00bcd4 50%,   /* 진한 민트 */
+    #e91e63 75%,   /* 진한 핑크 */
+    #ffc107 100%) !important;  /* 진한 노랑 */
+  border-radius: 2px !important;
+  opacity: 0.7 !important;
+}
+
+.tt_article_useless_p_margin h3,
+.contents_style h3,
+.post-content h3 {
+  font-size: 1.8rem !important;
+  margin-top: 1.8em !important;
+  margin-bottom: 0.8em !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+.tt_article_useless_p_margin h4,
+.contents_style h4,
+.post-content h4 {
+  font-size: 1.5rem !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 0.7em !important;
+  font-weight: 600 !important;
+}
+
+/* 코드블럭 인라인 스타일 오버라이드 - 더 강력한 선택자 */
+pre[data-ke-type="codeblock"],
+pre.hljs,
+.tt_article_useless_p_margin pre,
+.contents_style pre,
+.post-content pre,
+div[class*="article"] pre,
+div[class*="content"] pre {
+  background: var(--pastel-blue) !important;
+  padding: 25px !important;
+  border-radius: 12px !important;
+  margin: 25px 0 !important;
+  font-family: 'GangwonEduSaeeum_OTFMediumA', 'Courier New', monospace !important;
+  font-size: 1.25rem !important;
+  line-height: 1.7 !important;
+  overflow-x: auto !important;
+  display: block !important;
+}
+
+/* 코드블럭 내부 code 태그 */
+pre[data-ke-type="codeblock"] code,
+pre.hljs code,
+.tt_article_useless_p_margin pre code,
+.contents_style pre code,
+.post-content pre code,
+div[class*="article"] pre code,
+div[class*="content"] pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.25rem !important;
+  font-family: 'GangwonEduSaeeum_OTFMediumA', 'Courier New', monospace !important;
+  color: inherit !important;
+}
+
+/* 인라인 코드 스타일 강화 - 백틱 스타일 */
+code:not(pre code),
+.tt_article_useless_p_margin code:not(pre code),
+.contents_style code:not(pre code),
+.post-content code:not(pre code),
+div[class*="article"] code:not(pre code),
+div[class*="content"] code:not(pre code),
+p code,
+li code,
+td code {
+  background: rgba(175, 184, 193, 0.2) !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: 6px !important;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace !important;
+  font-size: 0.875em !important;
+  color: #e01e5a !important;
+  border: 1px solid rgba(175, 184, 193, 0.2) !important;
+  white-space: break-spaces !important;
+  word-break: break-word !important;
+  display: inline !important;
+}
+
 .post-content img {
   max-width: 100%;
   height: auto;
@@ -1099,67 +1250,127 @@ body.tt-body-search .post-list {
   border-bottom-color: var(--accent-color);
 }
 
+/* H4, H5, H6 추가 스타일 */
+.post-content h4 {
+  font-size: 1.35rem;
+}
+
+.post-content h5 {
+  font-size: 1.2rem;
+}
+
+.post-content h6 {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* 리스트 스타일 개선 */
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1.5em;
+  padding-left: 2em;
+}
+
+.post-content li {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 0.5em;
+}
+
 .post-content blockquote {
   border-left: 4px solid var(--accent-color);
   padding-left: 20px;
   margin: 2em 0;
   font-style: italic;
   color: var(--text-secondary);
+  font-size: 1.15rem;
 }
 
-.post-content pre {
+/* 코드블럭 스타일 */
+.post-content pre,
+pre[data-ke-type="codeblock"],
+.hljs {
   background: var(--pastel-blue);
-  padding: 20px;
+  padding: 16px 20px;
   border-radius: 8px;
   overflow-x: auto;
-  margin: 2em 0;
+  margin: 1.5em 0;
+  font-family: 'GangwonEduSaeeum_OTFMediumA', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1a1a1a !important;
+  font-weight: normal;
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* 인라인 코드 스타일 (백틱) */
+/* 인라인 코드 스타일 (백틱) - 마크다운 스타일 */
 .post-content code,
 .article-content code,
 p code,
 li code,
 td code {
-  background: linear-gradient(135deg, #f5f7ff, #f0f4ff);
-  color: #d63384;
-  padding: 3px 8px;
-  border-radius: 5px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 0.9em;
-  font-weight: 500;
-  border: 1px solid rgba(74, 144, 226, 0.15);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  white-space: nowrap;
-  display: inline-block;
-  line-height: 1.4;
-  transition: all 0.2s ease;
+  background: rgba(27, 31, 35, 0.05);
+  color: #e36209;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 85%;
+  font-weight: normal;
+  white-space: break-spaces;
+  display: inline;
+  line-height: inherit;
 }
 
 /* pre 내부의 code는 스타일 제외 */
 pre code,
 .hljs code,
-[data-ke-type="codeblock"] code {
+[data-ke-type="codeblock"] code,
+pre[data-ke-type="codeblock"] code {
   background: transparent !important;
-  color: inherit !important;
+  color: #1a1a1a !important;
   padding: 0 !important;
   border: none !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
   font-size: inherit !important;
   white-space: pre !important;
   display: block !important;
   line-height: inherit !important;
+  font-family: 'GangwonEduSaeeum_OTFMediumA', 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  font-weight: normal !important;
 }
 
-.post-content code:hover,
-.article-content code:hover,
-p code:hover,
-li code:hover,
-td code:hover {
-  background: linear-gradient(135deg, #e8ecff, #e0e8ff);
-  border-color: rgba(74, 144, 226, 0.25);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+/* 코드블럭 내 키워드 강조 */
+pre .hljs-keyword,
+pre .hljs-selector-tag,
+pre .hljs-title {
+  color: #0066cc !important;
+  font-weight: 600 !important;
+}
+
+pre .hljs-string,
+pre .hljs-attr {
+  color: #008000 !important;
+}
+
+pre .hljs-comment {
+  color: #666666 !important;
+  font-style: italic;
+}
+
+pre .hljs-number,
+pre .hljs-literal {
+  color: #d73a49 !important;
+}
+
+pre .hljs-function,
+pre .hljs-built_in,
+pre .hljs-builtin-name {
+  color: #6f42c1 !important;
+}
+
+/* 인라인 코드 호버 효과 제거 - 마크다운 스타일은 호버 효과 없음 */
   font-family: "Courier New", Courier, monospace;
   font-size: 0.95em;
 }
@@ -1578,6 +1789,36 @@ body#tt-body-guestbook .single-post {
   .post-grid.list-view .post-card-thumbnail {
     width: 100%;
     border-radius: 12px 12px 0 0;
+  }
+  
+  /* 모바일 본문 텍스트 크기 조정 */
+  .post-content {
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+  
+  .post-content p {
+    font-size: 1.1rem;
+  }
+  
+  .post-content h1 {
+    font-size: 2rem;
+  }
+  
+  .post-content h2 {
+    font-size: 1.7rem;
+  }
+  
+  .post-content h3 {
+    font-size: 1.4rem;
+  }
+  
+  /* 모바일 코드블럭 크기 조정 */
+  .post-content pre,
+  pre[data-ke-type="codeblock"],
+  .hljs {
+    font-size: 0.95rem;
+    padding: 14px 16px;
   }
 
   .section-header {

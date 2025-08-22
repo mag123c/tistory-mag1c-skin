@@ -449,6 +449,72 @@ document.addEventListener("DOMContentLoaded", function () {
   // 페이지 로드 시 접은글 초기화
   initMoreLess();
   
+  // 코드블럭 인라인 스타일 제거 및 스타일 강제 적용
+  function enforceCodeBlockStyles() {
+    // 모든 코드블럭 찾기 - 더 포괄적인 선택자
+    const codeBlocks = document.querySelectorAll('pre[data-ke-type="codeblock"], pre.hljs, pre');
+    
+    codeBlocks.forEach(block => {
+      // 인라인 스타일 완전 제거
+      block.removeAttribute('style');
+      
+      // 강제로 스타일 적용
+      block.style.cssText = '';
+      
+      // 코드블럭 내부의 모든 요소 처리
+      const innerElements = block.querySelectorAll('*');
+      innerElements.forEach(el => {
+        el.removeAttribute('style');
+        el.style.cssText = '';
+      });
+    });
+    
+    // 인라인 코드 스타일 강제 적용 - 백틱 스타일
+    const inlineCodes = document.querySelectorAll('code:not(pre code), p code, li code, td code');
+    inlineCodes.forEach(code => {
+      // 인라인 스타일 제거
+      code.removeAttribute('style');
+      code.style.cssText = '';
+    });
+    
+    // p 태그 인라인 스타일 제거
+    const paragraphs = document.querySelectorAll('.tt_article_useless_p_margin p, .contents_style p, article p');
+    paragraphs.forEach(p => {
+      // font-size 관련 인라인 스타일만 제거
+      if (p.style.fontSize) {
+        p.style.fontSize = '';
+      }
+      if (p.style.lineHeight) {
+        p.style.lineHeight = '';
+      }
+    });
+  }
+  
+  // 초기 실행
+  enforceCodeBlockStyles();
+  
+  // DOM 변경 감지하여 재적용 - 무한루프 방지
+  let isEnforcing = false;
+  const codeObserver = new MutationObserver(() => {
+    if (!isEnforcing) {
+      isEnforcing = true;
+      setTimeout(() => {
+        enforceCodeBlockStyles();
+        isEnforcing = false;
+      }, 100);
+    }
+  });
+  
+  // 포스트 컨텐츠 영역 감시
+  const postContent = document.querySelector('.post-content, .tt_article_useless_p_margin, .contents_style');
+  if (postContent) {
+    codeObserver.observe(postContent, {
+      childList: true,
+      subtree: true
+      // attributes와 attributeFilter 제거 - 무한루프 원인
+    });
+  }
+  
   // AJAX 등으로 동적 컨텐츠 로드 시 재초기화
   const morelessObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
