@@ -645,9 +645,30 @@ document.addEventListener("DOMContentLoaded", function () {
                       body.classList.contains('tt-body-tag');
     
     if (isListPage) {
-      // 모든 광고 요소 제거
-      const ads = document.querySelectorAll('.revenue_unit_wrap, ins.adsbygoogle, .kakao_ad_area');
-      ads.forEach(ad => ad.remove());
+      // 모든 광고 요소 강제 제거
+      const adSelectors = [
+        '.revenue_unit_wrap',
+        '.revenue_unit_item',
+        'ins.adsbygoogle',
+        '.kakao_ad_area',
+        'ins.kakao_ad_area',
+        '[class*="revenue"]',
+        '[class*="adsense"]',
+        '[class*="adfit"]',
+        '[id*="google_ads"]',
+        '[id*="kakao_ad"]',
+        'iframe[src*="googlesyndication"]',
+        'iframe[src*="kakaocdn"]',
+        'script[src*="adsbygoogle"]',
+        'script[src*="kakao"]'
+      ];
+      
+      adSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.remove();
+        });
+      });
       
       // TOC 제거
       const toc = document.querySelector('.toc-container');
@@ -655,21 +676,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   
+  // 즉시 실행
+  removeAdsOnListPages();
+  
   // DOM 로드 후 실행
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', removeAdsOnListPages);
   } else {
-    removeAdsOnListPages();
+    setTimeout(removeAdsOnListPages, 100);
   }
   
-  // 동적으로 추가되는 광고도 제거
+  // 동적으로 추가되는 광고도 제거 (디바운싱 추가)
+  let adRemovalTimeout;
   const adObserver = new MutationObserver(() => {
-    removeAdsOnListPages();
+    clearTimeout(adRemovalTimeout);
+    adRemovalTimeout = setTimeout(removeAdsOnListPages, 50);
   });
   
   adObserver.observe(document.body, {
     childList: true,
     subtree: true
+  });
+  
+  // 페이지 로드 완료 후 한 번 더 실행
+  window.addEventListener('load', () => {
+    setTimeout(removeAdsOnListPages, 500);
+    setTimeout(removeAdsOnListPages, 1000);
+    setTimeout(removeAdsOnListPages, 2000);
   });
   
   // 공유 버튼 기능
