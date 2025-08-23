@@ -1353,13 +1353,23 @@ td code {
   }
 }
 
-/* 티스토리 자동 생성 액션 버튼 숨기기 */
-.container_postbtn,
+/* 티스토리 자동 생성 액션 버튼 숨기기 (커스텀 버튼 제외) */
+.container_postbtn:not(.post-actions .postbtn_like),
 #post_button_group,
-.postbtn_like,
 .postbtn_ccl,
 .wrap_btn_etc {
   display: none !important;
+}
+
+/* 기본 티스토리 버튼 컨테이너만 숨기기 */
+body > .container_postbtn,
+.single-post > .container_postbtn {
+  display: none !important;
+}
+
+/* 우리 커스텀 버튼 내의 postbtn_like는 표시 */
+.post-actions .postbtn_like {
+  display: block !important;
 }
 
 /* 리스트 페이지에서 광고 숨기기 */
