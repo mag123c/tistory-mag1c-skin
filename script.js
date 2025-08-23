@@ -743,6 +743,25 @@ document.addEventListener("DOMContentLoaded", function () {
     subtree: true
   });
   
+  // 구독 버튼 기능 추가
+  function initSubscription() {
+    const subButtons = document.querySelectorAll('.btn_subscription');
+    subButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const blogId = this.dataset.blogId;
+        const url = this.dataset.url;
+        
+        if (typeof window.TistoryBlog !== 'undefined' && window.TistoryBlog.subscribe) {
+          window.TistoryBlog.subscribe(blogId, url);
+        }
+      });
+    });
+  }
+  
+  // 구독 버튼 초기화
+  setTimeout(initSubscription, 1000);
+  
   
   
   // 페이지 로드 완료 후 한 번 더 실행

@@ -463,29 +463,29 @@
                 <!-- 게시글 액션 버튼 -->
                 <div class="post-actions">
                     <!-- 공감 버튼 -->
-                    <script>
-                        window.ReactionButtonType = 'reaction';
-                        window.ReactionApiUrl = '/reaction';
-                        window.ReactionReqBody = {
-                            entryId: [##_article_rep_id_##]
-                        }
-                    </script>
-                    <div class="action-btn like-btn" id="reaction-[##_article_rep_id_##]" data-tistory-react-app="Reaction">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                        <span>공감</span>
+                    <div class="postbtn_like">
+                        <script>
+                            window.ReactionButtonType = 'reaction';
+                            window.ReactionApiUrl = '//[##_blog_link_##]/reaction';
+                            window.ReactionReqBody = {
+                                entryId: [##_article_rep_id_##]
+                            }
+                        </script>
+                        <div class="wrap_btn action-btn like-btn" id="reaction-[##_article_rep_id_##]" data-tistory-react-app="Reaction">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>공감</span>
+                        </div>
                     </div>
                     
                     <!-- 구독 버튼 -->
-                    <s_sidebar_element>
-                        <button class="action-btn subscribe-btn" onclick="[##_subscription_onclick_##]">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                            <span>구독하기</span>
-                        </button>
-                    </s_sidebar_element>
+                    <button class="action-btn subscribe-btn btn_subscription" data-blog-id="[##_blog_id_##]" data-url="[##_blog_link_##]" data-device="web_pc">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span class="txt_state">구독하기</span>
+                    </button>
                 </div>
                 
                 <!-- 티스토리 기본 액션 버튼들 숨김 (CCL 표시는 유지) -->
@@ -695,14 +695,12 @@
 
     <!-- 플로팅 버튼 -->
     <div class="floating-buttons">
-        <s_sidebar_element>
-            <button class="subscribe-floating" onclick="[##_subscription_onclick_##]" aria-label="구독">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                </svg>
-                <span>구독</span>
-            </button>
-        </s_sidebar_element>
+        <button class="subscribe-floating btn_subscription" data-blog-id="[##_blog_id_##]" data-url="[##_blog_link_##]" data-device="web_pc" aria-label="구독">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span class="txt_state">구독</span>
+        </button>
         <a href="/guestbook" class="guestbook-floating" aria-label="방명록">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
