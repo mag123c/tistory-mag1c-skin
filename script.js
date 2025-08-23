@@ -638,18 +638,16 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // 리스트 페이지에서 광고 제거
   function removeAdsOnListPages() {
-    const body = document.body;
     const url = window.location.pathname;
     const isArticlePage = /^\/\d+$/.test(url); // 상세 페이지 확인
     
-    // 상세 페이지가 아닌 경우에만 광고 제거
-    const isListPage = !isArticlePage && (
-                      body.classList.contains('tt-body-index') ||
-                      body.classList.contains('tt-body-category') ||
-                      body.classList.contains('tt-body-search') ||
-                      body.classList.contains('tt-body-tag'));
+    // 상세 페이지면 광고 제거하지 않음
+    if (isArticlePage) {
+      return;
+    }
     
-    if (isListPage) {
+    // 상세 페이지가 아닌 모든 페이지에서 광고 제거
+    if (!isArticlePage) {
       // 모든 광고 요소 강제 제거
       const adSelectors = [
         '.revenue_unit_wrap',
@@ -716,42 +714,6 @@ document.addEventListener("DOMContentLoaded", function () {
     childList: true,
     subtree: true
   });
-  
-  // 공감 버튼 내용 복구
-  function restoreLikeButton() {
-    const likeButtons = document.querySelectorAll('.like-btn');
-    likeButtons.forEach(btn => {
-      // 버튼이 비어있으면 내용 추가
-      if (!btn.querySelector('svg') && !btn.querySelector('span')) {
-        btn.innerHTML = `
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
-          <span>공감</span>
-        `;
-      }
-    });
-  }
-  
-  // 초기 실행
-  restoreLikeButton();
-  
-  // DOM 변경 시 버튼 복구
-  const buttonObserver = new MutationObserver(() => {
-    restoreLikeButton();
-  });
-  
-  buttonObserver.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['class', 'id']
-  });
-  
-  // 100ms 후에도 한 번 더 실행
-  setTimeout(restoreLikeButton, 100);
-  setTimeout(restoreLikeButton, 500);
-  setTimeout(restoreLikeButton, 1000);
   
   // 페이지 로드 완료 후 한 번 더 실행
   window.addEventListener('load', () => {

@@ -1680,12 +1680,29 @@ pre .hljs-builtin-name {
   height: 20px;
 }
 
-/* 공감 버튼 내용 강제 표시 */
-.like-btn svg,
-.like-btn span {
-  display: inline-block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+/* 티스토리 공감 버튼 디자인 커스터마이징 */
+#reaction-[##_article_rep_id_##],
+[id^="reaction-"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 24px !important;
+  background: white !important;
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+[id^="reaction-"]:hover {
+  border-color: #ff6b6b !important;
+  background: #ffe5e5 !important;
+  color: #ff6b6b !important;
+  transform: translateY(-2px) !important;
 }
 
 .like-btn:hover {
