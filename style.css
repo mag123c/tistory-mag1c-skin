@@ -1711,6 +1711,37 @@ pre .hljs-builtin-name {
   pointer-events: none;
 }
 
+/* 공감 카운트 스타일 */
+.like-btn .like-count {
+  font-weight: 600;
+  color: #666;
+  margin-left: 4px;
+}
+
+.like-btn .like-count:before {
+  content: '(';
+}
+
+.like-btn .like-count:after {
+  content: ')';
+}
+
+/* 공감한 상태 스타일 */
+.like-btn.liked {
+  background: #ffe5e5;
+  border-color: #ff6b6b;
+}
+
+.like-btn.liked .heart-icon {
+  fill: #ff6b6b;
+  stroke: #ff6b6b;
+}
+
+.like-btn.liked .like-text,
+.like-btn.liked .like-count {
+  color: #ff6b6b;
+}
+
 /* 티스토리가 생성하는 버튼을 투명 오버레이로 */
 .like-btn .btn_post {
   position: absolute !important;

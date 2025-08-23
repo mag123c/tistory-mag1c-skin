@@ -715,7 +715,7 @@ document.addEventListener("DOMContentLoaded", function () {
     subtree: true
   });
   
-  // 공감 버튼 내용 유지
+  // 공감 버튼 내용 유지 및 상태 업데이트
   function maintainLikeButton() {
     const likeBtn = document.querySelector('.like-btn');
     if (likeBtn) {
@@ -724,10 +724,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const content = document.createElement('div');
         content.className = 'like-content';
         content.innerHTML = `
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="heart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
           </svg>
-          <span>공감</span>
+          <span class="like-text">공감</span>
+          <span class="like-count">0</span>
         `;
         
         // 티스토리 버튼 앞에 추가
@@ -738,6 +739,42 @@ document.addEventListener("DOMContentLoaded", function () {
           likeBtn.appendChild(content);
         }
       }
+      
+      // 티스토리 버튼에서 상태와 카운트 가져오기
+      updateLikeState();
+    }
+  }
+  
+  // 공감 상태와 카운트 업데이트
+  function updateLikeState() {
+    const likeBtn = document.querySelector('.like-btn');
+    if (!likeBtn) return;
+    
+    const tistoryBtn = likeBtn.querySelector('.btn_post');
+    if (tistoryBtn) {
+      // 공감 카운트 가져오기
+      const countElement = tistoryBtn.querySelector('.uoc-count');
+      const count = countElement ? countElement.textContent : '0';
+      
+      // 공감 상태 확인 (클래스로 판단)
+      const isLiked = tistoryBtn.classList.contains('like_on') || 
+                     tistoryBtn.querySelector('.like_on');
+      
+      // 우리 버튼 업데이트
+      const likeContent = likeBtn.querySelector('.like-content');
+      if (likeContent) {
+        const countSpan = likeContent.querySelector('.like-count');
+        if (countSpan) {
+          countSpan.textContent = count;
+        }
+        
+        // 하트 상태 업데이트
+        if (isLiked) {
+          likeBtn.classList.add('liked');
+        } else {
+          likeBtn.classList.remove('liked');
+        }
+      }
     }
   }
   
@@ -746,10 +783,30 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(maintainLikeButton, 500);
   setTimeout(maintainLikeButton, 1000);
   
-  const likeObserver = new MutationObserver(maintainLikeButton);
+  // 상태 변경 감지
+  const likeObserver = new MutationObserver((mutations) => {
+    maintainLikeButton();
+    // 클래스 변경도 감지하여 상태 업데이트
+    mutations.forEach(mutation => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        updateLikeState();
+      }
+    });
+  });
+  
   likeObserver.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
+  });
+  
+  // 클릭 이벤트 후 상태 업데이트
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.like-btn')) {
+      setTimeout(updateLikeState, 100);
+      setTimeout(updateLikeState, 500);
+    }
   });
   
   // 구독 alert 제거
