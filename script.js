@@ -660,7 +660,12 @@ document.addEventListener("DOMContentLoaded", function () {
         'iframe[src*="googlesyndication"]',
         'iframe[src*="kakaocdn"]',
         'script[src*="adsbygoogle"]',
-        'script[src*="kakao"]'
+        'script[src*="kakao"]',
+        '.google-auto-placed',
+        '.adsbygoogle-noablate',
+        'div[id^="aswift_"]',
+        'ins[data-ad-client]',
+        'ins[data-ad-format="auto"]'
       ];
       
       adSelectors.forEach(selector => {
