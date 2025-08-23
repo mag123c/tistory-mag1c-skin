@@ -622,6 +622,78 @@ document.addEventListener("DOMContentLoaded", function () {
   // 페이지 로드 시 TOC 생성
   generateTOC();
   
+  // 공유 버튼 기능
+  function initShareButtons() {
+    const shareBtn = document.querySelector('.share-btn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 간단한 공유 메뉴 생성
+        const shareMenu = document.createElement('div');
+        shareMenu.className = 'share-dropdown';
+        shareMenu.innerHTML = `
+          <button onclick="navigator.clipboard.writeText(location.href); alert('링크가 복사되었습니다!');">URL 복사</button>
+          <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href));">Facebook</button>
+          <button onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href));">X (Twitter)</button>
+          <button onclick="window.open('https://share.kakao.com/talk/friends/picker/link?app_key=YOUR_APP_KEY&container_id=kakao-link-btn&send_url=' + encodeURIComponent(location.href));">카카오톡</button>
+        `;
+        shareMenu.style.cssText = `
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          z-index: 1000;
+          margin-bottom: 8px;
+        `;
+        shareMenu.querySelectorAll('button').forEach(btn => {
+          btn.style.cssText = `
+            display: block;
+            width: 100%;
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            white-space: nowrap;
+          `;
+          btn.onmouseover = function() { this.style.background = '#f0f0f0'; };
+          btn.onmouseout = function() { this.style.background = 'none'; };
+        });
+        
+        // 기존 메뉴 제거
+        const existingMenu = document.querySelector('.share-dropdown');
+        if (existingMenu) {
+          existingMenu.remove();
+          return;
+        }
+        
+        // 메뉴 추가
+        this.style.position = 'relative';
+        this.appendChild(shareMenu);
+        
+        // 클릭 외부 영역 클릭시 메뉴 닫기
+        setTimeout(() => {
+          document.addEventListener('click', function closeMenu(e) {
+            if (!shareBtn.contains(e.target)) {
+              shareMenu.remove();
+              document.removeEventListener('click', closeMenu);
+            }
+          });
+        }, 100);
+      });
+    }
+  }
+  
+  // 공유 버튼 초기화
+  initShareButtons();
+  
   // DOM 변경 감지하여 재적용 - 무한루프 방지
   let isEnforcing = false;
   const codeObserver = new MutationObserver(() => {

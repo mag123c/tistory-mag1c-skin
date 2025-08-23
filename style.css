@@ -1353,6 +1353,14 @@ td code {
   }
 }
 
+/* 티스토리 자동 생성 액션 버튼 숨기기 */
+.container_postbtn,
+#post_button_group,
+.postbtn_like,
+.postbtn_ccl,
+.wrap_btn_etc {
+  display: none !important;
+}
 
 /* hljs (highlight.js) 파라미터 색상 변경 */
 .hljs-params {
