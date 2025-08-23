@@ -466,16 +466,18 @@
                     <div class="postbtn_like">
                         <script>
                             window.ReactionButtonType = 'reaction';
-                            window.ReactionApiUrl = '//[##_blog_link_##]/reaction';
+                            window.ReactionApiUrl = '[##_blog_link_##]/reaction';
                             window.ReactionReqBody = {
                                 entryId: [##_article_rep_id_##]
                             }
                         </script>
                         <div class="wrap_btn action-btn like-btn" id="reaction-[##_article_rep_id_##]" data-tistory-react-app="Reaction">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                            <span>공감</span>
+                            <button class="btn_post uoc-icon" style="width: 100%; height: 100%; background: transparent; border: none;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span>공감</span>
+                            </button>
                         </div>
                     </div>
                     

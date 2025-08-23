@@ -743,24 +743,15 @@ document.addEventListener("DOMContentLoaded", function () {
     subtree: true
   });
   
-  // 구독 버튼 기능 추가
-  function initSubscription() {
-    const subButtons = document.querySelectorAll('.btn_subscription');
-    subButtons.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const blogId = this.dataset.blogId;
-        const url = this.dataset.url;
-        
-        if (typeof window.TistoryBlog !== 'undefined' && window.TistoryBlog.subscribe) {
-          window.TistoryBlog.subscribe(blogId, url);
-        }
-      });
-    });
-  }
-  
-  // 구독 버튼 초기화
-  setTimeout(initSubscription, 1000);
+  // 구독 alert 제거
+  const originalAlert = window.alert;
+  window.alert = function(msg) {
+    // 구독 관련 메시지는 무시
+    if (msg && (msg.includes('구독') || msg.includes('subscription'))) {
+      return;
+    }
+    originalAlert(msg);
+  };
   
   
   
@@ -905,7 +896,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Lazy loading for images
   const lazyImages = document.querySelectorAll("img[data-src]");
   if (lazyImages.length > 0) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+    const imageObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target;
@@ -920,7 +911,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Header behavior on scroll
-  let lastScrollTop = 0;
   const header = document.querySelector(".site-header");
 
   if (header) {
@@ -940,8 +930,6 @@ document.addEventListener("DOMContentLoaded", function () {
           header.style.backdropFilter = "none";
           header.style.boxShadow = "none";
         }
-
-        lastScrollTop = scrollTop;
       },
       { passive: true }
     );
