@@ -715,31 +715,26 @@ document.addEventListener("DOMContentLoaded", function () {
     subtree: true
   });
   
-  // 공감 버튼이 티스토리에 의해 변경되면 스타일 유지
-  function maintainLikeButton() {
-    const reactionButtons = document.querySelectorAll('[id^="reaction-"] button');
-    reactionButtons.forEach(btn => {
-      // 티스토리가 버튼 내용을 바꿔도 우리 스타일 유지
-      if (!btn.querySelector('svg') && btn.querySelector('.ico_like')) {
-        // 티스토리 기본 아이콘 숨기고 우리 아이콘 추가
-        const icon = btn.querySelector('.ico_like');
-        if (icon) {
-          icon.style.display = 'none';
-        }
-        const svg = document.createElement('span');
-        svg.innerHTML = `
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle;">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
-        `;
-        btn.prepend(svg.firstElementChild);
-      }
-    });
-  }
+  // 공유 기능
+  window.sharePost = function() {
+    const title = document.querySelector('.post-title')?.textContent || document.title;
+    const url = window.location.href;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: title,
+        url: url
+      }).catch(console.error);
+    } else {
+      // 클립보드에 URL 복사
+      navigator.clipboard.writeText(url).then(() => {
+        alert('링크가 복사되었습니다!');
+      }).catch(() => {
+        prompt('링크를 복사하세요:', url);
+      });
+    }
+  };
   
-  // 페이지 로드 시 실행
-  setTimeout(maintainLikeButton, 500);
-  setTimeout(maintainLikeButton, 1000);
   
   // 페이지 로드 완료 후 한 번 더 실행
   window.addEventListener('load', () => {
