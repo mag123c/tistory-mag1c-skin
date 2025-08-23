@@ -502,19 +502,33 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // TOC (Table of Contents) 생성
   function generateTOC() {
-    // 단일 글 페이지인지 확인
+    // 단일 글 페이지인지 확인 - URL 패턴과 body 클래스로 정확히 판별
     const body = document.body;
-    const hasArticle = document.querySelector('article.single-post');
+    const url = window.location.pathname;
+    
+    // 숫자로 끝나는 URL만 글 상세 페이지 (예: /123)
+    const isArticlePage = /^\/\d+$/.test(url);
     
     // 메인 페이지나 리스트 페이지 체크
     const isMainOrList = body.classList.contains('tt-body-index') ||
                         body.classList.contains('tt-body-category') ||
                         body.classList.contains('tt-body-search') ||
                         body.classList.contains('tt-body-tag') ||
-                        body.classList.contains('tt-body-guestbook');
+                        body.classList.contains('tt-body-guestbook') ||
+                        url === '/' ||
+                        url.includes('/category') ||
+                        url.includes('/search') ||
+                        url.includes('/tag');
     
-    // 메인/리스트 페이지거나 article이 없으면 TOC 생성 안함
-    if (isMainOrList || !hasArticle) return;
+    // 글 상세 페이지가 아니면 TOC 생성 안함
+    if (!isArticlePage || isMainOrList) {
+      // 이미 생성된 TOC가 있다면 제거
+      const existingTOC = document.querySelector('.toc-container');
+      if (existingTOC) {
+        existingTOC.remove();
+      }
+      return;
+    }
     
     // 포스트 페이지인지 확인
     const postContent = document.querySelector('.post-content');
@@ -619,8 +633,44 @@ document.addEventListener("DOMContentLoaded", function () {
     updateActiveLink();
   }
   
-  // 페이지 로드 시 TOC 생성
+  // 페이지 로드 시 TOC 생성 및 리스트 페이지 광고 제거
   generateTOC();
+  
+  // 리스트 페이지에서 광고 제거
+  function removeAdsOnListPages() {
+    const body = document.body;
+    const isListPage = body.classList.contains('tt-body-index') ||
+                      body.classList.contains('tt-body-category') ||
+                      body.classList.contains('tt-body-search') ||
+                      body.classList.contains('tt-body-tag');
+    
+    if (isListPage) {
+      // 모든 광고 요소 제거
+      const ads = document.querySelectorAll('.revenue_unit_wrap, ins.adsbygoogle, .kakao_ad_area');
+      ads.forEach(ad => ad.remove());
+      
+      // TOC 제거
+      const toc = document.querySelector('.toc-container');
+      if (toc) toc.remove();
+    }
+  }
+  
+  // DOM 로드 후 실행
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', removeAdsOnListPages);
+  } else {
+    removeAdsOnListPages();
+  }
+  
+  // 동적으로 추가되는 광고도 제거
+  const adObserver = new MutationObserver(() => {
+    removeAdsOnListPages();
+  });
+  
+  adObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
   
   // 공유 버튼 기능
   function initShareButtons() {

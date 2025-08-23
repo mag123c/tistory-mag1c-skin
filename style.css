@@ -1362,6 +1362,28 @@ td code {
   display: none !important;
 }
 
+/* 리스트 페이지에서 광고 숨기기 */
+.tt-body-index .revenue_unit_wrap,
+.tt-body-category .revenue_unit_wrap,
+.tt-body-search .revenue_unit_wrap,
+.tt-body-tag .revenue_unit_wrap,
+.list-section .revenue_unit_wrap,
+.post-grid .revenue_unit_wrap {
+  display: none !important;
+}
+
+/* 리스트 페이지의 모든 광고 숨기기 */
+.tt-body-index ins.adsbygoogle,
+.tt-body-category ins.adsbygoogle,
+.tt-body-search ins.adsbygoogle,
+.tt-body-tag ins.adsbygoogle,
+.tt-body-index .kakao_ad_area,
+.tt-body-category .kakao_ad_area,
+.tt-body-search .kakao_ad_area,
+.tt-body-tag .kakao_ad_area {
+  display: none !important;
+}
+
 /* hljs (highlight.js) 파라미터 색상 변경 */
 .hljs-params {
   color: #d73a49 !important; /* 빨간색 계열 */
