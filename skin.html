@@ -465,7 +465,7 @@
                     <!-- 공감 버튼 -->
                     <script>
                         window.ReactionButtonType = 'reaction';
-                        window.ReactionApiUrl = '//[##_blog_link_##]/reaction';
+                        window.ReactionApiUrl = '[##_blog_link_##]/reaction';
                         window.ReactionReqBody = {
                             entryId: [##_article_rep_id_##]
                         }
@@ -484,18 +484,6 @@
                         </svg>
                         <span>구독하기</span>
                     </div>
-                    
-                    <!-- 공유 버튼 -->
-                    <button class="action-btn share-btn" onclick="sharePost()">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="18" cy="5" r="3"></circle>
-                            <circle cx="6" cy="12" r="3"></circle>
-                            <circle cx="18" cy="19" r="3"></circle>
-                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                        </svg>
-                        <span>공유하기</span>
-                    </button>
                 </div>
                 
                 <!-- 티스토리 기본 액션 버튼들 숨김 (CCL 표시는 유지) -->
@@ -779,5 +767,19 @@
     </footer>
 
     <script src="./script.js"></script>
+    
+    <!-- highlight.js 초기화 수정 -->
+    <script>
+        if (typeof hljs !== 'undefined') {
+            // 기존 initHighlightingOnLoad 대신 highlightAll 사용
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    hljs.highlightAll();
+                });
+            } else {
+                hljs.highlightAll();
+            }
+        }
+    </script>
 </body>
 </html>

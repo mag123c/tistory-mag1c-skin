@@ -1685,12 +1685,6 @@ pre .hljs-builtin-name {
   color: #ff6b6b;
 }
 
-.share-btn:hover {
-  border-color: #51cf66;
-  background: #e8f9ea;
-  color: #51cf66;
-}
-
 .subscribe-btn:hover {
   border-color: #4A90E2;
   background: var(--pastel-blue);

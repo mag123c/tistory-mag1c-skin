@@ -715,25 +715,6 @@ document.addEventListener("DOMContentLoaded", function () {
     subtree: true
   });
   
-  // 공유 기능
-  window.sharePost = function() {
-    const title = document.querySelector('.post-title')?.textContent || document.title;
-    const url = window.location.href;
-    
-    if (navigator.share) {
-      navigator.share({
-        title: title,
-        url: url
-      }).catch(console.error);
-    } else {
-      // 클립보드에 URL 복사
-      navigator.clipboard.writeText(url).then(() => {
-        alert('링크가 복사되었습니다!');
-      }).catch(() => {
-        prompt('링크를 복사하세요:', url);
-      });
-    }
-  };
   
   
   // 페이지 로드 완료 후 한 번 더 실행
