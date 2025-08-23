@@ -1680,6 +1680,14 @@ pre .hljs-builtin-name {
   height: 20px;
 }
 
+/* 공감 버튼 내용 강제 표시 */
+.like-btn svg,
+.like-btn span {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 .like-btn:hover {
   border-color: #ff6b6b;
   background: #ffe5e5;

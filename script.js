@@ -642,7 +642,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const isListPage = body.classList.contains('tt-body-index') ||
                       body.classList.contains('tt-body-category') ||
                       body.classList.contains('tt-body-search') ||
-                      body.classList.contains('tt-body-tag');
+                      body.classList.contains('tt-body-tag') ||
+                      !body.classList.contains('tt-body-page'); // 개별 글 페이지가 아닌 모든 페이지
     
     if (isListPage) {
       // 모든 광고 요소 강제 제거
@@ -659,13 +660,22 @@ document.addEventListener("DOMContentLoaded", function () {
         '[id*="kakao_ad"]',
         'iframe[src*="googlesyndication"]',
         'iframe[src*="kakaocdn"]',
+        'iframe[src*="doubleclick"]',
+        'iframe[src*="googleads"]',
         'script[src*="adsbygoogle"]',
         'script[src*="kakao"]',
+        'script[src*="doubleclick"]',
         '.google-auto-placed',
         '.adsbygoogle-noablate',
         'div[id^="aswift_"]',
         'ins[data-ad-client]',
-        'ins[data-ad-format="auto"]'
+        'ins[data-ad-slot]',
+        'ins[data-ad-format]',
+        'div[data-google-query-id]',
+        '.adsbygoogle',
+        '[id*="div-gpt-ad"]',
+        '.ad-container',
+        '.ads-wrapper'
       ];
       
       adSelectors.forEach(selector => {
