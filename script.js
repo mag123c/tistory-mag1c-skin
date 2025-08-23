@@ -502,6 +502,21 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // TOC (Table of Contents) 생성
   function generateTOC() {
+    // 단일 글 페이지인지 확인 - article.single-post가 있고, s_article_rep이 있는 경우
+    const body = document.body;
+    const hasArticle = document.querySelector('article.single-post');
+    const hasArticleRep = document.querySelector('s_article_rep, .area_view');
+    
+    // 메인 페이지나 리스트 페이지 체크
+    const isMainOrList = body.classList.contains('tt-body-index') ||
+                        body.classList.contains('tt-body-category') ||
+                        body.classList.contains('tt-body-search') ||
+                        body.classList.contains('tt-body-tag') ||
+                        body.classList.contains('tt-body-guestbook');
+    
+    // 메인/리스트 페이지거나 article이 없으면 TOC 생성 안함
+    if (isMainOrList || !hasArticle || !hasArticleRep) return;
+    
     // 포스트 페이지인지 확인
     const postContent = document.querySelector('.post-content');
     const singlePost = document.querySelector('.single-post');
