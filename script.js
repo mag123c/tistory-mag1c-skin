@@ -783,22 +783,31 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(maintainLikeButton, 500);
   setTimeout(maintainLikeButton, 1000);
   
-  // 상태 변경 감지
+  // 상태 변경 감지 (무한 루프 방지)
+  let isUpdating = false;
   const likeObserver = new MutationObserver((mutations) => {
+    if (isUpdating) return;
+    
+    isUpdating = true;
     maintainLikeButton();
-    // 클래스 변경도 감지하여 상태 업데이트
-    mutations.forEach(mutation => {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        updateLikeState();
-      }
-    });
+    
+    // 클래스 변경 감지
+    const hasClassChange = mutations.some(m => 
+      m.type === 'attributes' && 
+      m.attributeName === 'class' &&
+      m.target.classList.contains('btn_post')
+    );
+    
+    if (hasClassChange) {
+      updateLikeState();
+    }
+    
+    setTimeout(() => { isUpdating = false; }, 100);
   });
   
   likeObserver.observe(document.body, {
     childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['class']
+    subtree: true
   });
   
   // 클릭 이벤트 후 상태 업데이트
