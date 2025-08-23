@@ -1353,56 +1353,6 @@ td code {
   }
 }
 
-/* 광고 위치 및 중복 제어 */
-/* 포스트 내부 중간에 삽입되는 광고 숨기기 */
-.post-content .revenue_unit_wrap,
-.tt_article_useless_p_margin .revenue_unit_wrap,
-.contents_style .revenue_unit_wrap {
-  display: none !important;
-}
-
-/* 푸터 광고 숨기기 */
-footer .revenue_unit_wrap,
-.site-footer .revenue_unit_wrap {
-  display: none !important;
-}
-
-/* 광고는 메인 영역 상단/하단에만 표시 */
-main > .revenue_unit_wrap:first-child,
-main > .revenue_unit_wrap:last-child {
-  display: block !important;
-  max-width: 100% !important;
-  overflow: hidden !important;
-  margin: 20px auto !important;
-  text-align: center !important;
-}
-
-/* 구글 애드센스 및 광고 overflow 방지 */
-.single-post ins.adsbygoogle,
-.single-post .ad-container,
-.post-content ins.adsbygoogle {
-  max-width: 100% !important;
-  overflow: hidden !important;
-}
-
-.single-post ins.adsbygoogle iframe,
-.single-post .kakao_ad_area iframe,
-.post-content ins.adsbygoogle iframe {
-  max-width: 100% !important;
-}
-
-/* 애드센스 반응형 조정 */
-.single-post [data-ad-format="auto"],
-.post-content [data-ad-format="auto"] {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* 광고 컨테이너가 본문 너비를 넘지 않도록 */
-.single-post .revenue_unit_item {
-  max-width: 100%;
-  overflow-x: auto;
-}
 
 /* hljs (highlight.js) 파라미터 색상 변경 */
 .hljs-params {
