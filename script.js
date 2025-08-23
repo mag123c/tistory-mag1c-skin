@@ -718,16 +718,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // 공감 버튼 내용 유지
   function maintainLikeButton() {
     const likeBtn = document.querySelector('.like-btn');
-    if (likeBtn && !likeBtn.querySelector('svg')) {
-      const svg = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-      </svg>`;
-      const span = '<span>공감</span>';
-      
-      // 티스토리가 생성한 내용이 있으면 앞에 추가
-      const tistoryContent = likeBtn.innerHTML;
-      if (!tistoryContent.includes('svg')) {
-        likeBtn.innerHTML = svg + span + tistoryContent;
+    if (likeBtn) {
+      // like-content가 없으면 추가
+      if (!likeBtn.querySelector('.like-content')) {
+        const content = document.createElement('div');
+        content.className = 'like-content';
+        content.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>공감</span>
+        `;
+        
+        // 티스토리 버튼 앞에 추가
+        const tistoryBtn = likeBtn.querySelector('.btn_post');
+        if (tistoryBtn) {
+          likeBtn.insertBefore(content, tistoryBtn);
+        } else {
+          likeBtn.appendChild(content);
+        }
       }
     }
   }
