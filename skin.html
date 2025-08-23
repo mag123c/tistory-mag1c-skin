@@ -463,14 +463,22 @@
                 <!-- 게시글 액션 버튼 -->
                 <div class="post-actions">
                     <!-- 공감 버튼 (티스토리 시스템 연동) -->
-                    <div class="action-btn like-btn" id="reaction-[##_article_rep_id_##]" data-tistory-react-app="Reaction">
+                    <div class="postbtn_like action-btn like-btn">
                         <script>
                             window.ReactionButtonType = 'reaction';
-                            window.ReactionApiUrl = 'https://[##_blog_link_##]/reaction';
+                            window.ReactionApiUrl = '//[##_blog_link_##]/reaction';
                             window.ReactionReqBody = {
                                 entryId: [##_article_rep_id_##]
                             }
                         </script>
+                        <div class="wrap_btn" id="reaction-[##_article_rep_id_##]" data-tistory-react-app="Reaction">
+                            <button class="btn_post">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span>공감</span>
+                            </button>
+                        </div>
                     </div>
                     
                     <!-- 공유 버튼 (드롭다운만) -->

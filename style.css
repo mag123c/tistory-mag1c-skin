@@ -1681,8 +1681,12 @@ pre .hljs-builtin-name {
 }
 
 /* 티스토리 공감 버튼 디자인 커스터마이징 */
-#reaction-[##_article_rep_id_##],
-[id^="reaction-"] {
+.postbtn_like .wrap_btn {
+  display: inline-block !important;
+}
+
+.postbtn_like .btn_post,
+[id^="reaction-"] .btn_post {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
@@ -1698,11 +1702,22 @@ pre .hljs-builtin-name {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
 }
 
-[id^="reaction-"]:hover {
+.postbtn_like .btn_post:hover,
+[id^="reaction-"] .btn_post:hover {
   border-color: #ff6b6b !important;
   background: #ffe5e5 !important;
   color: #ff6b6b !important;
   transform: translateY(-2px) !important;
+}
+
+/* 티스토리 기본 스타일 오버라이드 */
+.postbtn_like .ico_postbtn {
+  display: none !important;
+}
+
+.postbtn_like .uoc-count {
+  margin-left: 4px;
+  font-weight: 600;
 }
 
 .like-btn:hover {
